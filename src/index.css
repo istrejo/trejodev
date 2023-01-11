@@ -1,0 +1,30 @@
+:root {
+  --background: #212428;
+  --green: #02b283;
+  --blue: #0173b2;
+  --grey: #cccccc;
+  --font: #c4cfde;
+  --font-primary: 'Montserrat', sans-serif;
+  --font-secondary: 'Poppins', sans-serif;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: var(--background) !important;
+  color: var(--font);
+}
+
+p {
+  font-size: 1.6rem;
+}
+
