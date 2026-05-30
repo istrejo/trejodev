@@ -13,11 +13,10 @@ interface SocialLink {
   imports: [IconComponent],
   template: `
     <footer class="border-t border-border mt-24">
-      <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
-
-        <p class="font-mono text-xs text-muted">
-          &copy; {{ year }} Alejandro Trejo &mdash; Digitalmente Studio
-        </p>
+      <div
+        class="max-w-6xl mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-4"
+      >
+        <p class="font-mono text-xs text-muted">&copy; {{ year }} Alejandro Trejo</p>
 
         <div class="flex items-center gap-5">
           @for (link of socialLinks; track link.href) {
@@ -32,7 +31,6 @@ interface SocialLink {
             </a>
           }
         </div>
-
       </div>
     </footer>
   `,
