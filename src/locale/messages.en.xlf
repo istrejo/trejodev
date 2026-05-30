@@ -2,6 +2,62 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="es" target-language="en" datatype="plaintext" original="ng2.template">
     <body>
+      <trans-unit id="about.eyebrow" datatype="html">
+        <source>Sobre mí</source>
+        <target>About me</target>
+      </trans-unit>
+      <trans-unit id="about.hero.title" datatype="html">
+        <source> Decisiones técnicas<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br&gt;"/><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;text-accent-1&quot;&gt;"/>correctas.<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <target> Correct technical<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br&gt;"/><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;text-accent-1&quot;&gt;"/>decisions.<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></target>
+      </trans-unit>
+      <trans-unit id="about.hero.body" datatype="html">
+        <source> Senior Frontend Developer especializado en Angular con más de 8 años construyendo sistemas frontend de alta complejidad. Mi propuesta de valor no es el framework — es la capacidad de tomar la decisión técnica correcta según el contexto real del negocio. </source>
+        <target> Senior Frontend Developer specialized in Angular with 8+ years building complex frontend systems. My value proposition is not the framework — it's the ability to make the right technical decision based on the real business context. </target>
+      </trans-unit>
+      <trans-unit id="about.philosophy.eyebrow" datatype="html">
+        <source>Filosofía</source>
+        <target>Philosophy</target>
+      </trans-unit>
+      <trans-unit id="about.philosophy.title" datatype="html">
+        <source> Cómo pienso sobre los problemas. </source>
+        <target> How I think about problems. </target>
+      </trans-unit>
+      <trans-unit id="about.approach.eyebrow" datatype="html">
+        <source>Mi approach</source>
+        <target>My approach</target>
+      </trans-unit>
+      <trans-unit id="about.approach.title" datatype="html">
+        <source> Arquitectura pragmática.<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br&gt;"/>Sin dogmas. </source>
+        <target> Pragmatic architecture.<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br&gt;"/>No dogmas. </target>
+      </trans-unit>
+      <trans-unit id="about.approach.body" datatype="html">
+        <source> No existe la arquitectura perfecta — existe la arquitectura correcta para cada contexto. Mi proceso siempre empieza por entender el negocio, no por elegir el patrón. </source>
+        <target> The perfect architecture doesn't exist — the right architecture for each context does. My process always starts by understanding the business, not by picking a pattern. </target>
+      </trans-unit>
+      <trans-unit id="about.studio.title" datatype="html">
+        <source>Digitalmente Studio</source>
+        <target>Digitalmente Studio</target>
+      </trans-unit>
+      <trans-unit id="about.studio.body" datatype="html">
+        <source> Opero bajo mi entidad de consultoría para proyectos donde el criterio arquitectónico es crítico. Trabajo de forma remota con equipos y empresas que necesitan más que un developer — necesitan un arquitecto que entienda el negocio antes de tocar el código. </source>
+        <target> I operate under my consulting entity for projects where architectural judgment is critical. I work remotely with teams and companies that need more than a developer — they need an architect who understands the business before touching the code. </target>
+      </trans-unit>
+      <trans-unit id="about.studio.cta.primary" datatype="html">
+        <source> Trabajemos juntos </source>
+        <target> Let's work together </target>
+      </trans-unit>
+      <trans-unit id="about.studio.cta.secondary" datatype="html">
+        <source> Ver proyectos </source>
+        <target> View projects </target>
+      </trans-unit>
+      <trans-unit id="about.quote.text" datatype="html">
+        <source> &quot;El objetivo no es escribir el mejor código.<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br&gt;"/> Es construir el sistema correcto.&quot; </source>
+        <target> &quot;The goal is not to write the best code.<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br&gt;"/> It's to build the right system.&quot; </target>
+      </trans-unit>
+      <trans-unit id="about.quote.author" datatype="html">
+        <source> — Alejandro Trejo, Digitalmente Studio </source>
+        <target> — Alejandro Trejo, Digitalmente Studio </target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
