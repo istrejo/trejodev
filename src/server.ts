@@ -14,6 +14,12 @@ const angularApp = new AngularNodeAppEngine();
 
 app.use(express.json());
 
+// ─── Health check ────────────────────────────────────────────────────────────
+
+app.get('/api/health', (_req, res) => {
+  res.json({ status: 'ok', ts: Date.now() });
+});
+
 // ─── Contact API ────────────────────────────────────────────────────────────
 
 interface ContactPayload {
