@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
+import { SeoService } from '../../../core/services/seo.service';
 import { RevealDirective } from '../../../shared/directives/reveal.directive';
 
 type Level = 'expert' | 'advanced' | 'intermediate' | 'familiar';
@@ -88,7 +89,8 @@ const LEVEL_LABEL: Record<Level, string> = {
     </div>
   `,
 })
-export class StackComponent {
+export class StackComponent implements OnInit {
+  private readonly seo = inject(SeoService);
   readonly legend = (Object.entries(LEVEL_LABEL) as [Level, string][]).map(([level, label]) => ({
     level,
     label,
@@ -186,4 +188,12 @@ export class StackComponent {
       ],
     },
   ];
+
+  ngOnInit(): void {
+    this.seo.set({
+      title: 'Stack técnico',
+      description: 'Angular, TypeScript, RxJS, Nx, microfrontends, arquitectura hexagonal y más. Herramientas con criterio y trade-offs claros.',
+      url: '/stack',
+    });
+  }
 }

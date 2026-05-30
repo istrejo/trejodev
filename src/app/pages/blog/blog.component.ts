@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
+import { SeoService } from '../../core/services/seo.service';
 
 @Component({
   selector: 'app-blog',
@@ -9,4 +10,14 @@ import { Component } from '@angular/core';
     </div>
   `,
 })
-export class BlogComponent {}
+export class BlogComponent implements OnInit {
+  private readonly seo = inject(SeoService);
+
+  ngOnInit(): void {
+    this.seo.set({
+      title: 'Blog',
+      description: 'Artículos sobre arquitectura frontend, Angular, microfrontends y criterio técnico pragmático.',
+      url: '/blog',
+    });
+  }
+}

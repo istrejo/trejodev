@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { SeoService } from '../../core/services/seo.service';
 import { ButtonComponent } from '../../shared/atoms/button/button.component';
 import { TagComponent } from '../../shared/atoms/tag/tag.component';
 import { IconComponent } from '../../shared/atoms/icon/icon.component';
@@ -204,7 +205,8 @@ interface ApproachStep {
     </section>
   `,
 })
-export class AboutComponent {
+export class AboutComponent implements OnInit {
+  private readonly seo = inject(SeoService);
   readonly expertiseTags = [
     'Angular', 'TypeScript', 'Nx', 'Module Federation',
     'Hexagonal Architecture', 'Clean Architecture', 'SOLID', 'RxJS',
@@ -264,4 +266,12 @@ export class AboutComponent {
     { title: 'Migración Angular', description: 'AngularJS → Angular moderno, arquitectura limpia.' },
     { title: 'Mentoría técnica', description: 'Acompañamiento de equipos en transición a mejores prácticas.' },
   ];
+
+  ngOnInit(): void {
+    this.seo.set({
+      title: 'Sobre mí',
+      description: '8+ años construyendo sistemas frontend de alta complejidad. Mi propuesta de valor es la decisión técnica correcta según el contexto real del negocio.',
+      url: '/about',
+    });
+  }
 }

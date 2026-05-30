@@ -12,6 +12,7 @@ import { ButtonComponent } from '../../../shared/atoms/button/button.component';
 import { IconComponent } from '../../../shared/atoms/icon/icon.component';
 import { TagComponent } from '../../../shared/atoms/tag/tag.component';
 import { SanityService } from '../../../core/services/sanity.service';
+import { SeoService } from '../../../core/services/seo.service';
 import { Project } from '../../../core/models/project.model';
 
 @Component({
@@ -139,6 +140,7 @@ export class ProjectDetailComponent implements OnChanges {
   slug = input.required<string>();
 
   private readonly sanity = inject(SanityService);
+  private readonly seo = inject(SeoService);
   private readonly localeId = inject(LOCALE_ID);
 
   readonly loading = signal(true);
@@ -158,6 +160,10 @@ export class ProjectDetailComponent implements OnChanges {
       next: (p) => {
         this.project.set(p);
         this.loading.set(false);
+        if (p) {
+          const desc = this.localeId.startsWith('en') ? p.description_en : p.description_es;
+          this.seo.set({ title: p.title, description: desc, url: `/projects/${p.slug}` });
+        }
       },
       error: () => {
         this.loading.set(false);

@@ -1,4 +1,5 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
+import { SeoService } from '../../core/services/seo.service';
 import {
   AbstractControl,
   FormBuilder,
@@ -233,9 +234,18 @@ const INQUIRY_TYPES = [
     </div>
   `,
 })
-export class ContactComponent {
+export class ContactComponent implements OnInit {
   private readonly http = inject(HttpClient);
+  private readonly seo = inject(SeoService);
   private readonly fb = inject(FormBuilder);
+
+  ngOnInit(): void {
+    this.seo.set({
+      title: 'Contacto',
+      description: 'Trabajemos juntos. Discovery call gratis, proyectos Angular, auditorías técnicas y mentoría. Respuesta en menos de 24 horas.',
+      url: '/contact',
+    });
+  }
 
   readonly state = signal<FormState>('idle');
   readonly errorMsg = signal<string>('');

@@ -3,6 +3,7 @@ import { ProjectCardComponent } from '../../../shared/molecules/project-card/pro
 import { ChipComponent } from '../../../shared/atoms/chip/chip.component';
 import { RevealDirective } from '../../../shared/directives/reveal.directive';
 import { SanityService } from '../../../core/services/sanity.service';
+import { SeoService } from '../../../core/services/seo.service';
 import { ProjectSummary } from '../../../core/models/project.model';
 
 @Component({
@@ -116,6 +117,7 @@ import { ProjectSummary } from '../../../core/models/project.model';
 })
 export class ProjectListComponent implements OnInit {
   readonly sanity = inject(SanityService);
+  private readonly seo = inject(SeoService);
 
   readonly loading = signal(true);
   readonly error = signal<string | null>(null);
@@ -139,6 +141,11 @@ export class ProjectListComponent implements OnInit {
   });
 
   ngOnInit(): void {
+    this.seo.set({
+      title: 'Proyectos',
+      description: 'Portfolio de proyectos Angular: microfrontends, migraciones, design systems y arquitecturas de alta complejidad.',
+      url: '/projects',
+    });
     this.load();
   }
 

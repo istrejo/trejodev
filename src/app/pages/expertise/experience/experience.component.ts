@@ -1,4 +1,5 @@
-import { Component, LOCALE_ID, inject } from '@angular/core';
+import { Component, LOCALE_ID, OnInit, inject } from '@angular/core';
+import { SeoService } from '../../../core/services/seo.service';
 import { RevealDirective } from '../../../shared/directives/reveal.directive';
 import {
   TimelineItemComponent,
@@ -105,7 +106,8 @@ interface Education {
     </div>
   `,
 })
-export class ExperienceComponent {
+export class ExperienceComponent implements OnInit {
+  private readonly seo = inject(SeoService);
   readonly localeId = inject(LOCALE_ID);
 
   readonly metrics = [
@@ -183,4 +185,12 @@ export class ExperienceComponent {
       ],
     },
   ];
+
+  ngOnInit(): void {
+    this.seo.set({
+      title: 'Experiencia',
+      description: '8+ años de trayectoria en arquitectura frontend: desde developer a fundador de consultoría. Cada rol fue una decisión consciente.',
+      url: '/experience',
+    });
+  }
 }

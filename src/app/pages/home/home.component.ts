@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { SeoService } from '../../core/services/seo.service';
 import { ButtonComponent } from '../../shared/atoms/button/button.component';
 import { TagComponent } from '../../shared/atoms/tag/tag.component';
 import { IconComponent } from '../../shared/atoms/icon/icon.component';
@@ -244,7 +245,8 @@ const FEATURED_PROJECTS = [
     </section>
   `,
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
+  private readonly seo = inject(SeoService);
   readonly stackTags = STACK_TAGS;
   readonly projects = FEATURED_PROJECTS;
 
@@ -253,4 +255,12 @@ export class HomeComponent {
     { label: 'Contexto > Tendencias', desc: 'Cada problema exige su propia solución.' },
     { label: 'Fundamentos > Atajos', desc: 'El conocimiento profundo escala, los atajos no.' },
   ];
+
+  ngOnInit(): void {
+    this.seo.set({
+      title: 'Alejandro Trejo — Senior Frontend Developer',
+      description: 'Senior Frontend Developer especializado en Angular, microfrontend architecture y criterio arquitectónico pragmático. Fundador de Digitalmente Studio.',
+      url: '/',
+    });
+  }
 }
