@@ -1,0 +1,36 @@
+import type { Meta, StoryObj } from '@storybook/angular';
+import { TagComponent } from './tag.component';
+
+const meta: Meta<TagComponent> = {
+  title: 'Atoms/Tag',
+  component: TagComponent,
+  tags: ['autodocs'],
+  render: () => ({
+    template: `<app-tag>Angular</app-tag>`,
+  }),
+};
+
+export default meta;
+type Story = StoryObj<TagComponent>;
+
+export const Default: Story = {
+  render: () => ({
+    template: `<app-tag>Angular</app-tag>`,
+  }),
+};
+
+export const StackGroup: Story = {
+  render: () => ({
+    template: `
+      <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+        <app-tag>Angular</app-tag>
+        <app-tag>TypeScript</app-tag>
+        <app-tag>RxJS</app-tag>
+        <app-tag>Tailwind</app-tag>
+        <app-tag>Docker</app-tag>
+        <app-tag>Nx</app-tag>
+        <app-tag>Storybook</app-tag>
+      </div>
+    `,
+  }),
+};
