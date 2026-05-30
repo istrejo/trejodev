@@ -1,0 +1,27 @@
+import type { Preview } from '@storybook/angular';
+import { setCompodocJson } from '@storybook/addon-docs/angular';
+import docJson from '../documentation.json';
+
+import '../src/styles.scss';
+
+setCompodocJson(docJson);
+
+const preview: Preview = {
+  parameters: {
+    controls: {
+      matchers: {
+        color: /(background|color)$/i,
+        date: /Date$/i,
+      },
+    },
+    backgrounds: {
+      default: 'dark',
+      values: [
+        { name: 'dark', value: '#0A0A0A' },
+        { name: 'surface', value: '#111111' },
+      ],
+    },
+  },
+};
+
+export default preview;

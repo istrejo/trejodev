@@ -1,0 +1,15 @@
+@theme {
+  /* Colors */
+  --color-bg: #0A0A0A;
+  --color-surface: #111111;
+  --color-border: #1E1E1E;
+  --color-text: #F5F5F5;
+  --color-muted: #6B6B6B;
+  --color-accent-1: #DD0031;
+  --color-accent-2: #2496ED;
+
+  /* Typography */
+  --font-mono: 'JetBrains Mono', 'Space Mono', monospace;
+  --font-sans: 'Inter', 'DM Sans', sans-serif;
+  --font-code: 'Fira Code', monospace;
+}
