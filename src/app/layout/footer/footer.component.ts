@@ -16,7 +16,16 @@ interface SocialLink {
       <div
         class="max-w-6xl mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-4"
       >
-        <p class="font-mono text-xs text-muted">&copy; {{ year }} Alejandro Trejo</p>
+        <div class="flex items-center gap-4">
+          <img
+            src="/logo.png"
+            alt="Alejandro Trejo"
+            class="h-7 w-auto opacity-40"
+            style="filter: brightness(0) invert(1)"
+            aria-hidden="true"
+          >
+          <p class="font-mono text-xs text-muted">&copy; {{ year }} Alejandro Trejo</p>
+        </div>
 
         <div class="flex items-center gap-5">
           @for (link of socialLinks; track link.href) {
@@ -39,8 +48,8 @@ export class FooterComponent {
   readonly year = new Date().getFullYear();
 
   readonly socialLinks: SocialLink[] = [
-    { icon: 'github', href: 'https://github.com/aletrejo', label: 'GitHub' },
-    { icon: 'linkedin', href: 'https://linkedin.com/in/aletrejo', label: 'LinkedIn' },
+    { icon: 'github', href: 'https://github.com/istrejo', label: 'GitHub' },
+    { icon: 'linkedin', href: 'https://linkedin.com/in/alejandrotrejodev', label: 'LinkedIn' },
     { icon: 'mail', href: 'mailto:hola@digitalmente.studio', label: 'Email' },
   ];
 }

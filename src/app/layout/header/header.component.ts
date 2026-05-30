@@ -36,8 +36,13 @@ import { NavComponent } from '../nav/nav.component';
       <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
 
         <!-- Logo -->
-        <a routerLink="/" class="font-mono font-bold text-text hover:text-accent-1 transition-colors duration-150 text-lg tracking-tight">
-          AT<span class="text-accent-1">.</span>
+        <a routerLink="/" class="flex items-center opacity-80 hover:opacity-100 transition-opacity duration-150">
+          <img
+            src="/logo.png"
+            alt="Alejandro Trejo"
+            class="h-9 w-auto"
+            style="filter: brightness(0) invert(1)"
+          >
         </a>
 
         <!-- Desktop nav -->
