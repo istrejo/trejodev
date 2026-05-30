@@ -7,8 +7,11 @@ import {
 } from '@angular/router';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 
 import { routes } from './app.routes';
+import { SANITY_CONFIG } from './core/tokens/sanity.token';
+import { environment } from '../environments/environment';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -21,5 +24,10 @@ export const appConfig: ApplicationConfig = {
     ),
     provideClientHydration(withEventReplay()),
     provideAnimations(),
+    provideHttpClient(withFetch()),
+    {
+      provide: SANITY_CONFIG,
+      useValue: environment.sanity,
+    },
   ],
 };

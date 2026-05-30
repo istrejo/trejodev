@@ -1,12 +1,164 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, computed, inject, signal } from '@angular/core';
+import { ProjectCardComponent } from '../../../shared/molecules/project-card/project-card.component';
+import { ChipComponent } from '../../../shared/atoms/chip/chip.component';
+import { RevealDirective } from '../../../shared/directives/reveal.directive';
+import { SanityService } from '../../../core/services/sanity.service';
+import { ProjectSummary } from '../../../core/models/project.model';
 
 @Component({
   selector: 'app-project-list',
   standalone: true,
+  imports: [ProjectCardComponent, ChipComponent, RevealDirective],
+  styles: [`
+    .page-title { animation: listSlideUp 500ms ease-out 80ms both; }
+    .page-filters { animation: listSlideUp 500ms ease-out 200ms both; }
+    @keyframes listSlideUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  `],
   template: `
-    <div class="min-h-screen flex items-center justify-center">
-      <span class="font-mono text-muted text-sm">— projects —</span>
+    <!-- ═══ HEADER ══════════════════════════════════════════════════ -->
+    <section class="border-b border-border">
+      <div class="max-w-6xl mx-auto px-6 py-16 space-y-6">
+        <span class="font-mono text-xs text-accent-1 tracking-widest uppercase">Proyectos</span>
+        <h1 class="page-title font-mono font-bold text-3xl sm:text-4xl text-text">
+          Trabajo real.<br>Decisiones reales.
+        </h1>
+        <p class="text-muted max-w-xl leading-relaxed">
+          Proyectos seleccionados donde la arquitectura, el criterio técnico y
+          el impacto en el negocio fueron lo primero.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══ FILTERS + GRID ══════════════════════════════════════════ -->
+    <div class="max-w-6xl mx-auto px-6 py-12">
+
+      <!-- Filter chips -->
+      <div class="page-filters flex flex-wrap gap-2 mb-10">
+        <app-chip
+          [selected]="activeFilter() === 'all'"
+          (click)="setFilter('all')"
+        >Todos</app-chip>
+        <app-chip
+          [selected]="activeFilter() === 'featured'"
+          (click)="setFilter('featured')"
+        >Featured</app-chip>
+        @for (tag of filterTags(); track tag) {
+          <app-chip
+            [selected]="activeFilter() === tag"
+            (click)="setFilter(tag)"
+          >{{ tag }}</app-chip>
+        }
+      </div>
+
+      <!-- Loading state -->
+      @if (loading()) {
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          @for (i of skeletons; track i) {
+            <div class="animate-pulse border border-border bg-surface p-6 space-y-4">
+              <div class="aspect-video bg-border/40"></div>
+              <div class="h-4 bg-border/40 rounded w-3/4"></div>
+              <div class="h-3 bg-border/40 rounded w-full"></div>
+              <div class="h-3 bg-border/40 rounded w-5/6"></div>
+              <div class="flex gap-2 pt-2">
+                <div class="h-5 w-16 bg-border/40 rounded-sm"></div>
+                <div class="h-5 w-20 bg-border/40 rounded-sm"></div>
+              </div>
+            </div>
+          }
+        </div>
+      }
+
+      <!-- CMS not configured -->
+      @if (!loading() && !sanity.isConfigured) {
+        <div class="border border-border bg-surface p-10 text-center space-y-3">
+          <p class="font-mono text-sm text-muted">CMS no configurado</p>
+          <p class="text-xs text-muted/60">
+            Agregá tu <code class="text-accent-2">SANITY_PROJECT_ID</code> en
+            <code class="text-accent-2">src/environments/environment.ts</code>
+          </p>
+        </div>
+      }
+
+      <!-- Error state -->
+      @if (!loading() && error() && sanity.isConfigured) {
+        <div class="border border-accent-1/30 bg-accent-1/5 p-8 text-center space-y-2">
+          <p class="font-mono text-sm text-accent-1">Error al cargar proyectos</p>
+          <p class="text-xs text-muted">{{ error() }}</p>
+          <button
+            type="button"
+            (click)="load()"
+            class="font-mono text-xs text-accent-1 border border-accent-1/30 px-3 py-1.5 hover:bg-accent-1/10 transition-colors mt-3"
+          >Reintentar</button>
+        </div>
+      }
+
+      <!-- Empty filtered state -->
+      @if (!loading() && !error() && filteredProjects().length === 0 && allProjects().length > 0) {
+        <div class="py-16 text-center">
+          <p class="font-mono text-sm text-muted">Sin proyectos para este filtro.</p>
+        </div>
+      }
+
+      <!-- Projects grid -->
+      @if (!loading() && filteredProjects().length > 0) {
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6" appReveal>
+          @for (project of filteredProjects(); track project._id) {
+            <app-project-card [project]="project" />
+          }
+        </div>
+      }
+
     </div>
   `,
 })
-export class ProjectListComponent {}
+export class ProjectListComponent implements OnInit {
+  readonly sanity = inject(SanityService);
+
+  readonly loading = signal(true);
+  readonly error = signal<string | null>(null);
+  readonly allProjects = signal<ProjectSummary[]>([]);
+  readonly activeFilter = signal<string>('all');
+
+  readonly skeletons = [1, 2, 3, 4, 5, 6];
+
+  readonly filterTags = computed(() => {
+    const tags = new Set<string>();
+    this.allProjects().forEach((p) => p.stack.slice(0, 3).forEach((t) => tags.add(t)));
+    return [...tags].slice(0, 6);
+  });
+
+  readonly filteredProjects = computed(() => {
+    const filter = this.activeFilter();
+    const projects = this.allProjects();
+    if (filter === 'all') return projects;
+    if (filter === 'featured') return projects.filter((p) => p.featured);
+    return projects.filter((p) => p.stack.includes(filter));
+  });
+
+  ngOnInit(): void {
+    this.load();
+  }
+
+  load(): void {
+    this.loading.set(true);
+    this.error.set(null);
+
+    this.sanity.getProjects().subscribe({
+      next: (projects) => {
+        this.allProjects.set(projects);
+        this.loading.set(false);
+      },
+      error: (err: Error) => {
+        this.error.set(err.message ?? 'Unknown error');
+        this.loading.set(false);
+      },
+    });
+  }
+
+  setFilter(filter: string): void {
+    this.activeFilter.set(filter);
+  }
+}
