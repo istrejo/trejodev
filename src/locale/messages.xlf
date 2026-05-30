@@ -100,6 +100,83 @@
           <context context-type="linenumber">200,202</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="experience.eyebrow" datatype="html">
+        <source>Experiencia</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/expertise/experience/experience.component.ts</context>
+          <context context-type="linenumber">33,34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="experience.title" datatype="html">
+        <source>Trayectoria profesional.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/expertise/experience/experience.component.ts</context>
+          <context context-type="linenumber">35,36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="experience.lead" datatype="html">
+        <source> 8+ años construyendo sistemas frontend de alta complejidad. Cada rol fue una decisión consciente hacia mayor criterio arquitectónico. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/expertise/experience/experience.component.ts</context>
+          <context context-type="linenumber">38,40</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="experience.jobs.title" datatype="html">
+        <source>Experiencia laboral</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/expertise/experience/experience.component.ts</context>
+          <context context-type="linenumber">51,53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="experience.metrics.title" datatype="html">
+        <source>En números</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/expertise/experience/experience.component.ts</context>
+          <context context-type="linenumber">68,69</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="experience.education.title" datatype="html">
+        <source>Formación</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/expertise/experience/experience.component.ts</context>
+          <context context-type="linenumber">80,81</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="experience.remote.label" datatype="html">
+        <source> 100% Remote </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/expertise/experience/experience.component.ts</context>
+          <context context-type="linenumber">96,98</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="experience.remote.desc" datatype="html">
+        <source> Trabajo remoto con equipos distribuidos globalmente desde 2020. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/expertise/experience/experience.component.ts</context>
+          <context context-type="linenumber">99,101</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="stack.eyebrow" datatype="html">
+        <source>Stack</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/expertise/stack/stack.component.ts</context>
+          <context context-type="linenumber">47,48</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="stack.title" datatype="html">
+        <source>Herramientas con criterio.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/expertise/stack/stack.component.ts</context>
+          <context context-type="linenumber">49,50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="stack.lead" datatype="html">
+        <source> No colecciono frameworks. Profundizo en los que eleijo con criterio y entiendo sus trade-offs en contextos reales. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/expertise/stack/stack.component.ts</context>
+          <context context-type="linenumber">52,54</context>
+        </context-group>
+      </trans-unit>
     </body>
   </file>
 </xliff>

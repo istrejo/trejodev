@@ -58,6 +58,50 @@
         <source> — Alejandro Trejo, Digitalmente Studio </source>
         <target> — Alejandro Trejo, Digitalmente Studio </target>
       </trans-unit>
+      <trans-unit id="stack.eyebrow" datatype="html">
+        <source>Stack</source>
+        <target>Stack</target>
+      </trans-unit>
+      <trans-unit id="stack.title" datatype="html">
+        <source>Herramientas con criterio.</source>
+        <target>Tools with purpose.</target>
+      </trans-unit>
+      <trans-unit id="stack.lead" datatype="html">
+        <source> No colecciono frameworks. Profundizo en los que eleijo con criterio y entiendo sus trade-offs en contextos reales. </source>
+        <target> I don't collect frameworks. I go deep on the ones I choose deliberately and understand their trade-offs in real contexts. </target>
+      </trans-unit>
+      <trans-unit id="experience.eyebrow" datatype="html">
+        <source>Experiencia</source>
+        <target>Experience</target>
+      </trans-unit>
+      <trans-unit id="experience.title" datatype="html">
+        <source>Trayectoria profesional.</source>
+        <target>Professional track record.</target>
+      </trans-unit>
+      <trans-unit id="experience.lead" datatype="html">
+        <source> 8+ años construyendo sistemas frontend de alta complejidad. Cada rol fue una decisión consciente hacia mayor criterio arquitectónico. </source>
+        <target> 8+ years building highly complex frontend systems. Every role was a deliberate decision toward stronger architectural judgment. </target>
+      </trans-unit>
+      <trans-unit id="experience.jobs.title" datatype="html">
+        <source>Experiencia laboral</source>
+        <target>Work experience</target>
+      </trans-unit>
+      <trans-unit id="experience.metrics.title" datatype="html">
+        <source>En números</source>
+        <target>By the numbers</target>
+      </trans-unit>
+      <trans-unit id="experience.education.title" datatype="html">
+        <source>Formación</source>
+        <target>Education</target>
+      </trans-unit>
+      <trans-unit id="experience.remote.label" datatype="html">
+        <source> 100% Remote </source>
+        <target> 100% Remote </target>
+      </trans-unit>
+      <trans-unit id="experience.remote.desc" datatype="html">
+        <source> Trabajo remoto con equipos distribuidos globalmente desde 2020. </source>
+        <target> Remote work with globally distributed teams since 2020. </target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
