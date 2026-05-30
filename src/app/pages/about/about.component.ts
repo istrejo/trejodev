@@ -51,9 +51,10 @@ interface ApproachStep {
 
             <p class="about-hero-body text-muted leading-relaxed max-w-md text-base"
               i18n="@@about.hero.body">
-              Senior Frontend Developer especializado en Angular con más de 8 años
-              construyendo sistemas frontend de alta complejidad. Mi propuesta de valor
-              no es el framework — es la capacidad de tomar la decisión técnica correcta
+              Angular specialist con 4+ años construyendo sistemas frontend distribuidos
+              para equipos remotos en múltiples países. Especializado en Micro Frontend
+              architectures con Module Federation, NgRx / SignalStore y Angular v8–21.
+              Mi propuesta de valor no es el framework — es la decisión técnica correcta
               según el contexto real del negocio.
             </p>
 
@@ -213,10 +214,10 @@ export class AboutComponent implements OnInit {
   ];
 
   readonly stats = [
-    { value: '8+', label: 'años con Angular' },
-    { value: '15+', label: 'proyectos de arquitectura' },
+    { value: '4+', label: 'años con Angular (v8–21)' },
+    { value: '7', label: 'micro frontends implementados' },
+    { value: '80%', label: 'reducción de carga (CRSoporte)' },
     { value: '100%', label: 'trabajo remoto' },
-    { value: 'GDE', label: 'Google Developer Expert (path)' },
   ];
 
   readonly principles: Principle[] = [
@@ -270,7 +271,7 @@ export class AboutComponent implements OnInit {
   ngOnInit(): void {
     this.seo.set({
       title: 'Sobre mí',
-      description: '8+ años construyendo sistemas frontend de alta complejidad. Mi propuesta de valor es la decisión técnica correcta según el contexto real del negocio.',
+      description: '4+ años construyendo sistemas frontend distribuidos con Angular v8–21, MFEs y Module Federation. Mi propuesta de valor es la decisión técnica correcta según el contexto real.',
       url: '/about',
     });
   }

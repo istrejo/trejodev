@@ -261,8 +261,8 @@ export class ContactComponent implements OnInit {
 
   readonly directLinks = [
     { icon: 'mail' as const, href: 'mailto:hola@digitalmente.studio', label: 'hola@digitalmente.studio' },
-    { icon: 'linkedin' as const, href: 'https://linkedin.com/in/aletrejo', label: 'LinkedIn / aletrejo' },
-    { icon: 'github' as const, href: 'https://github.com/aletrejo', label: 'GitHub / aletrejo' },
+    { icon: 'linkedin' as const, href: 'https://linkedin.com/in/alejandrotrejodev', label: 'LinkedIn / alejandrotrejodev' },
+    { icon: 'github' as const, href: 'https://github.com/istrejo', label: 'GitHub / istrejo' },
   ];
 
   msgLength(): number {

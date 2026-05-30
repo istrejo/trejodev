@@ -36,8 +36,8 @@ interface Education {
           i18n="@@experience.title">Trayectoria profesional.</h1>
         <p class="page-lead text-muted max-w-xl leading-relaxed"
           i18n="@@experience.lead">
-          8+ años construyendo sistemas frontend de alta complejidad.
-          Cada rol fue una decisión consciente hacia mayor criterio arquitectónico.
+          4+ años construyendo sistemas frontend distribuidos con Angular y microfrontends.
+          Cada rol fue una decisión consciente hacia mayor impacto técnico.
         </p>
       </div>
     </section>
@@ -111,77 +111,109 @@ export class ExperienceComponent implements OnInit {
   readonly localeId = inject(LOCALE_ID);
 
   readonly metrics = [
-    { label: 'Años con Angular', value: '8+' },
-    { label: 'Proyectos de arquitectura', value: '15+' },
-    { label: 'Proyectos MFE entregados', value: '4' },
-    { label: 'Migraciones AngularJS → Angular', value: '3' },
-    { label: 'Equipos mentoreados', value: '6+' },
+    { label: 'Años con Angular (v8–21)', value: '4+' },
+    { label: 'Micro frontends implementados', value: '7' },
+    { label: 'Reducción de carga lograda', value: '80%' },
+    { label: 'Lighthouse score alcanzado', value: '90%' },
+    { label: 'Empresas / proyectos', value: '5+' },
   ];
 
   readonly education: Education[] = [
     {
-      institution: 'Universidad / Instituto (completar)',
-      degree: 'Ingeniería / Licenciatura en Sistemas',
-      period: '20XX — 20XX',
-      description_es: 'Formación en ciencias de la computación, algoritmos y estructuras de datos.',
-      description_en: 'Computer science education, algorithms and data structures.',
+      institution: 'IUTCM',
+      degree: 'Técnico Superior en Informática',
+      period: '2023 — 2025',
+      description_es: 'Tecnólogo universitario en ciencias de la computación. Mérida, Venezuela.',
+      description_en: 'Associate Degree in Computer Science. Mérida, Venezuela.',
     },
     {
       institution: 'Platzi',
-      degree: 'Frontend Development & Architecture',
-      period: '2018 — presente',
-      description_es: 'Especialización continua en Angular, arquitectura frontend y ecosistema JavaScript.',
-      description_en: 'Continuous specialization in Angular, frontend architecture and JavaScript ecosystem.',
+      degree: 'Angular, SSR & AI-assisted Development',
+      period: '2023 — 2026',
+      description_es: 'Especialización continua: Angular 17, optimización con Lighthouse & SSR, autenticación, herramientas de IA (Claude Code, Cursor).',
+      description_en: 'Continuous specialization: Angular 17, Lighthouse & SSR optimization, authentication, AI tools (Claude Code, Cursor).',
     },
   ];
 
   readonly jobs: TimelineJob[] = [
     {
+      company: 'Rebel Quest Interactive',
+      role: 'Senior Frontend Developer',
+      period: 'May 2025 — Mar 2026',
+      current: false,
+      description_es:
+        'Arquitectura y desarrollo de 7 micro frontends (4 Angular v18 + 3 React 18) con Webpack Module Federation para una plataforma de juegos distribuida. Equipo remoto desde Delaware, USA.',
+      description_en:
+        'Architecture and development of 7 micro frontends (4 Angular v18 + 3 React 18) with Webpack Module Federation for a distributed gaming platform. Remote team, Delaware, USA.',
+      tech: ['Angular 18', 'React 18', 'Module Federation', 'Tailwind', 'PrimeNG', 'Storybook', 'Docker', 'Redux'],
+      highlights: [
+        'Diseñé e implementé arquitectura de 7 MFE con Webpack Module Federation, reduciendo tiempos de carga un 50%',
+        'Contribuciones técnicas a 3 micro frontends React 18 integrados en la infraestructura principal Angular',
+        'Componentes documentados con Storybook; UIs construidas con Tailwind CSS y PrimeNG',
+        'Arquitectura AI-assisted con Claude Code y Cursor; ambientes distribuidos con Docker',
+      ],
+    },
+    {
       company: 'Digitalmente Studio',
-      role: 'Founder & Frontend Architect',
+      role: 'Frontend Developer',
       period: '2022 — presente',
       current: true,
       description_es:
-        'Consultoría frontend especializada en Angular y arquitectura de sistemas. Proyectos de microfrontends, auditorías técnicas y mentoría de equipos.',
+        'Consultoría frontend continua para agencia digital. Proyectos on-demand con Angular, React y desarrollo mobile con Ionic.',
       description_en:
-        'Frontend consultancy specialized in Angular and systems architecture. Microfrontend projects, technical audits and team mentoring.',
-      tech: ['Angular', 'Nx', 'Module Federation', 'TypeScript', 'Docker', 'GitHub Actions'],
+        'Ongoing frontend consultancy for a digital agency. On-demand projects with Angular, React and mobile development with Ionic.',
+      tech: ['Angular', 'React', 'Ionic', 'Firebase', 'Supabase', 'Google Cloud'],
       highlights: [
-        'Arquitectura MFE con Module Federation para plataforma eCommerce (4 equipos, 4 remotes)',
-        'Migración AngularJS → Angular 17+ con SSR para plataforma SaaS legal',
-        'Design systems con Storybook + Atomic Design para 3 clientes distintos',
-        'CI/CD automatizado con GitHub Actions + Dokploy en infraestructura Hetzner',
+        'App mobile con Ionic + Angular para gestión de visitas de condominios con notificaciones push vía Firebase',
+        'Desarrollo AI-assisted con Claude Code, Cursor y OpenAI Codex para acelerar entregas',
+        'Proyectos con React Native, Supabase y Google Cloud para múltiples clientes',
       ],
     },
     {
-      company: 'Empresa Tech (reemplazar con datos reales)',
-      role: 'Senior Frontend Developer',
-      period: '2020 — 2022',
-      current: false,
-      description_es:
-        'Desarrollo de aplicaciones Angular a escala empresarial. Líder técnico del equipo frontend y referente de arquitectura.',
-      description_en:
-        'Enterprise-scale Angular application development. Frontend team technical lead and architecture reference.',
-      tech: ['Angular', 'RxJS', 'TypeScript', 'NgRx', 'Jest', 'Cypress'],
-      highlights: [
-        'Lideré migración de arquitectura monolítica a feature-based con lazy loading',
-        'Reduje el tiempo de carga inicial en un 60% con bundle optimization',
-        'Implementé design system reutilizado por 3 productos del portafolio',
-      ],
-    },
-    {
-      company: 'Empresa anterior (reemplazar)',
+      company: 'Beartrack',
       role: 'Frontend Developer',
-      period: '2017 — 2020',
+      period: 'May 2024 — Ago 2024',
       current: false,
       description_es:
-        'Desarrollo frontend con Angular y TypeScript. Primeros proyectos de arquitectura y equipos de producto.',
+        'Desarrollo frontend para nueva versión de producto logístico multi-empresa e integración con PrestaShop. Santiago, Chile.',
       description_en:
-        'Frontend development with Angular and TypeScript. First architecture projects and product teams.',
-      tech: ['Angular', 'TypeScript', 'SCSS', 'RxJS', 'Firebase'],
+        'Frontend development for a new version of a multi-company logistics product and PrestaShop integration. Santiago, Chile.',
+      tech: ['Angular 18', 'TypeScript', 'PrimeNG', 'PrimeFlex'],
       highlights: [
-        'Desarrollé 4 SPAs en Angular para clientes de retail y fintech',
-        'Introduje TDD y testing con Jasmine/Karma en el equipo',
+        'Implementé nueva versión del producto logístico multi-empresa con Angular 18',
+        'Integración con PrestaShop para app de e-commerce modular y escalable',
+      ],
+    },
+    {
+      company: 'CRSoporte',
+      role: 'Frontend Developer',
+      period: 'Dic 2023 — Abr 2024',
+      current: false,
+      description_es:
+        'Interfaces web y mobile para personal médico y comerciantes. Reducción de tiempos de carga del 80% y mejora de Lighthouse de 50% a 90% en app logística para conductores. Costa Rica.',
+      description_en:
+        'Web and mobile interfaces for medical staff and merchants. 80% load time reduction and Lighthouse score improvement from 50% to 90% for a logistics app used by truck drivers. Costa Rica.',
+      tech: ['Angular 16/17', 'Ionic', 'NgRx', 'PrimeNG', 'TypeScript', 'Tailwind'],
+      highlights: [
+        'Reducción de tiempos de carga en un 80% con NgRx y paginación eficiente',
+        'Lighthouse performance de 50% → 90% en app logística para conductores de camión',
+        'Interfaces web y mobile para personal médico y comerciantes con Angular 16/17 + Signals',
+      ],
+    },
+    {
+      company: 'Repsa Logistic',
+      role: 'Frontend Developer',
+      period: 'Jul 2023 — Nov 2023',
+      current: false,
+      description_es:
+        'Nuevas features y refactor de app mobile y web para inspección de vehículos. Integración de lector QR con Ionic. Santiago, Chile.',
+      description_en:
+        'New features and refactor for a mobile and web vehicle inspection app. Ionic QR reader integration. Santiago, Chile.',
+      tech: ['Angular 14', 'Ionic 6', 'TypeScript', 'Capacitor', 'Firebase', 'Google Cloud'],
+      highlights: [
+        'Desarrollo de nuevas funcionalidades para app de inspección vehicular mobile + web',
+        'Integración del lector QR de Ionic para recuperación de datos de órdenes de inspección',
+        'Refactor de código para mejorar performance y mantenibilidad',
       ],
     },
   ];
@@ -189,7 +221,7 @@ export class ExperienceComponent implements OnInit {
   ngOnInit(): void {
     this.seo.set({
       title: 'Experiencia',
-      description: '8+ años de trayectoria en arquitectura frontend: desde developer a fundador de consultoría. Cada rol fue una decisión consciente.',
+      description: '4+ años construyendo sistemas frontend distribuidos: MFEs, Angular v8–21, reducción de carga del 80%, 5+ empresas en 4 países.',
       url: '/experience',
     });
   }

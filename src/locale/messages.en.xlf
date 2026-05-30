@@ -11,8 +11,8 @@
         <target> Correct technical<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br&gt;"/><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;text-accent-1&quot;&gt;"/>decisions.<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></target>
       </trans-unit>
       <trans-unit id="about.hero.body" datatype="html">
-        <source> Senior Frontend Developer especializado en Angular con más de 8 años construyendo sistemas frontend de alta complejidad. Mi propuesta de valor no es el framework — es la capacidad de tomar la decisión técnica correcta según el contexto real del negocio. </source>
-        <target> Senior Frontend Developer specialized in Angular with 8+ years building complex frontend systems. My value proposition is not the framework — it's the ability to make the right technical decision based on the real business context. </target>
+        <source> Angular specialist con 4+ años construyendo sistemas frontend distribuidos para equipos remotos en múltiples países. Especializado en Micro Frontend architectures con Module Federation, NgRx / SignalStore y Angular v8–21. Mi propuesta de valor no es el framework — es la decisión técnica correcta según el contexto real del negocio. </source>
+        <target> Angular specialist with 4+ years building distributed frontend systems for remote teams across multiple countries. Specialized in Micro Frontend architectures with Module Federation, NgRx / SignalStore and Angular v8–21. My value proposition is not the framework — it's the right technical decision based on the real business context. </target>
       </trans-unit>
       <trans-unit id="about.philosophy.eyebrow" datatype="html">
         <source>Filosofía</source>
@@ -167,8 +167,8 @@
         <target>Professional track record.</target>
       </trans-unit>
       <trans-unit id="experience.lead" datatype="html">
-        <source> 8+ años construyendo sistemas frontend de alta complejidad. Cada rol fue una decisión consciente hacia mayor criterio arquitectónico. </source>
-        <target> 8+ years building highly complex frontend systems. Every role was a deliberate decision toward stronger architectural judgment. </target>
+        <source> 4+ años construyendo sistemas frontend distribuidos con Angular y microfrontends. Cada rol fue una decisión consciente hacia mayor impacto técnico. </source>
+        <target> 4+ years building distributed frontend systems with Angular and microfrontends. Every role was a deliberate decision toward greater technical impact. </target>
       </trans-unit>
       <trans-unit id="experience.jobs.title" datatype="html">
         <source>Experiencia laboral</source>
