@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { TagComponent } from './tag.component';
+import { TagComponent } from '../tag.component';
 
 const meta: Meta<TagComponent> = {
   title: 'Atoms/Tag',
