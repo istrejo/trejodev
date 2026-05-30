@@ -70,6 +70,94 @@
         <source> No colecciono frameworks. Profundizo en los que eleijo con criterio y entiendo sus trade-offs en contextos reales. </source>
         <target> I don't collect frameworks. I go deep on the ones I choose deliberately and understand their trade-offs in real contexts. </target>
       </trans-unit>
+      <trans-unit id="contact.eyebrow" datatype="html">
+        <source>Contacto</source>
+        <target>Contact</target>
+      </trans-unit>
+      <trans-unit id="contact.title" datatype="html">
+        <source>Trabajemos juntos.</source>
+        <target>Let's work together.</target>
+      </trans-unit>
+      <trans-unit id="contact.lead" datatype="html">
+        <source> Contame qué necesitás. Respondo en menos de 24 horas. </source>
+        <target> Tell me what you need. I respond within 24 hours. </target>
+      </trans-unit>
+      <trans-unit id="contact.success.title" datatype="html">
+        <source>¡Mensaje enviado!</source>
+        <target>Message sent!</target>
+      </trans-unit>
+      <trans-unit id="contact.success.body" datatype="html">
+        <source> Te respondo en menos de 24 horas. </source>
+        <target> I'll get back to you within 24 hours. </target>
+      </trans-unit>
+      <trans-unit id="contact.success.another" datatype="html">
+        <source>Enviar otro mensaje</source>
+        <target>Send another message</target>
+      </trans-unit>
+      <trans-unit id="contact.field.name" datatype="html">
+        <source>Nombre *</source>
+        <target>Name *</target>
+      </trans-unit>
+      <trans-unit id="contact.field.name.placeholder" datatype="html">
+        <source>Tu nombre</source>
+        <target>Your name</target>
+      </trans-unit>
+      <trans-unit id="contact.error.name" datatype="html">
+        <source> Mínimo 2 caracteres. </source>
+        <target> Minimum 2 characters. </target>
+      </trans-unit>
+      <trans-unit id="contact.field.email" datatype="html">
+        <source>Email *</source>
+        <target>Email *</target>
+      </trans-unit>
+      <trans-unit id="contact.field.email.placeholder" datatype="html">
+        <source>hola@ejemplo.com</source>
+        <target>hello@example.com</target>
+      </trans-unit>
+      <trans-unit id="contact.error.email" datatype="html">
+        <source> Email inválido. </source>
+        <target> Invalid email. </target>
+      </trans-unit>
+      <trans-unit id="contact.field.type" datatype="html">
+        <source>¿Qué necesitás?</source>
+        <target>What do you need?</target>
+      </trans-unit>
+      <trans-unit id="contact.field.message" datatype="html">
+        <source>Mensaje *</source>
+        <target>Message *</target>
+      </trans-unit>
+      <trans-unit id="contact.field.message.placeholder" datatype="html">
+        <source>Contame tu proyecto, contexto, timeline...</source>
+        <target>Tell me about your project, context, timeline...</target>
+      </trans-unit>
+      <trans-unit id="contact.error.message" datatype="html">
+        <source> Mínimo 20 caracteres. </source>
+        <target> Minimum 20 characters. </target>
+      </trans-unit>
+      <trans-unit id="contact.submitting" datatype="html">
+        <source>Enviando...</source>
+        <target>Sending...</target>
+      </trans-unit>
+      <trans-unit id="contact.submit" datatype="html">
+        <source>Enviar mensaje</source>
+        <target>Send message</target>
+      </trans-unit>
+      <trans-unit id="contact.direct.title" datatype="html">
+        <source>Contacto directo</source>
+        <target>Direct contact</target>
+      </trans-unit>
+      <trans-unit id="contact.response.label" datatype="html">
+        <source> Disponible para proyectos </source>
+        <target> Available for projects </target>
+      </trans-unit>
+      <trans-unit id="contact.response.time" datatype="html">
+        <source> Respuesta en &lt; 24 horas (días hábiles) </source>
+        <target> Response within &lt; 24 hours (business days) </target>
+      </trans-unit>
+      <trans-unit id="contact.mailto.hint" datatype="html">
+        <source> ¿Preferís email directo? <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;mailto:hola@digitalmente.studio&quot; class=&quot;text-muted hover:text-text underline transition-colors&quot;&gt;"/> hola@digitalmente.studio <x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></source>
+        <target> Prefer direct email? <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;mailto:hola@digitalmente.studio&quot; class=&quot;text-muted hover:text-text underline transition-colors&quot;&gt;"/> hola@digitalmente.studio <x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></target>
+      </trans-unit>
       <trans-unit id="experience.eyebrow" datatype="html">
         <source>Experiencia</source>
         <target>Experience</target>

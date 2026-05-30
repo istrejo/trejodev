@@ -100,6 +100,161 @@
           <context context-type="linenumber">200,202</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="contact.eyebrow" datatype="html">
+        <source>Contacto</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/contact/contact.component.ts</context>
+          <context context-type="linenumber">41,42</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="contact.title" datatype="html">
+        <source>Trabajemos juntos.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/contact/contact.component.ts</context>
+          <context context-type="linenumber">43,44</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="contact.lead" datatype="html">
+        <source> Contame qué necesitás. Respondo en menos de 24 horas. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/contact/contact.component.ts</context>
+          <context context-type="linenumber">46,48</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="contact.success.title" datatype="html">
+        <source>¡Mensaje enviado!</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/contact/contact.component.ts</context>
+          <context context-type="linenumber">63,64</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="contact.success.body" datatype="html">
+        <source> Te respondo en menos de 24 horas. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/contact/contact.component.ts</context>
+          <context context-type="linenumber">65,67</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="contact.success.another" datatype="html">
+        <source>Enviar otro mensaje</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/contact/contact.component.ts</context>
+          <context context-type="linenumber">72,74</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="contact.field.name" datatype="html">
+        <source>Nombre *</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/contact/contact.component.ts</context>
+          <context context-type="linenumber">89,90</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="contact.field.name.placeholder" datatype="html">
+        <source>Tu nombre</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/contact/contact.component.ts</context>
+          <context context-type="linenumber">96,98</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="contact.error.name" datatype="html">
+        <source> Mínimo 2 caracteres. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/contact/contact.component.ts</context>
+          <context context-type="linenumber">100,101</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="contact.field.email" datatype="html">
+        <source>Email *</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/contact/contact.component.ts</context>
+          <context context-type="linenumber">107,109</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="contact.field.email.placeholder" datatype="html">
+        <source>hola@ejemplo.com</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/contact/contact.component.ts</context>
+          <context context-type="linenumber">114,116</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="contact.error.email" datatype="html">
+        <source> Email inválido. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/contact/contact.component.ts</context>
+          <context context-type="linenumber">118,119</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="contact.field.type" datatype="html">
+        <source>¿Qué necesitás?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/contact/contact.component.ts</context>
+          <context context-type="linenumber">127,129</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="contact.field.message" datatype="html">
+        <source>Mensaje *</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/contact/contact.component.ts</context>
+          <context context-type="linenumber">141,143</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="contact.field.message.placeholder" datatype="html">
+        <source>Contame tu proyecto, contexto, timeline...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/contact/contact.component.ts</context>
+          <context context-type="linenumber">147,149</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="contact.error.message" datatype="html">
+        <source> Mínimo 20 caracteres. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/contact/contact.component.ts</context>
+          <context context-type="linenumber">152,153</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="contact.submitting" datatype="html">
+        <source>Enviando...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/contact/contact.component.ts</context>
+          <context context-type="linenumber">178,179</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="contact.submit" datatype="html">
+        <source>Enviar mensaje</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/contact/contact.component.ts</context>
+          <context context-type="linenumber">180,182</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="contact.direct.title" datatype="html">
+        <source>Contacto directo</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/contact/contact.component.ts</context>
+          <context context-type="linenumber">194,196</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="contact.response.label" datatype="html">
+        <source> Disponible para proyectos </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/contact/contact.component.ts</context>
+          <context context-type="linenumber">214,215</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="contact.response.time" datatype="html">
+        <source> Respuesta en &lt; 24 horas (días hábiles) </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/contact/contact.component.ts</context>
+          <context context-type="linenumber">218,220</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="contact.mailto.hint" datatype="html">
+        <source> ¿Preferís email directo? <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;mailto:hola@digitalmente.studio&quot;
+              class=&quot;text-muted hover:text-text underline transition-colors&quot;&gt;"/> hola@digitalmente.studio <x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/contact/contact.component.ts</context>
+          <context context-type="linenumber">224,229</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="experience.eyebrow" datatype="html">
         <source>Experiencia</source>
         <context-group purpose="location">
