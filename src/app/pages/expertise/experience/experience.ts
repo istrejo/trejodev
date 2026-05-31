@@ -2,9 +2,9 @@ import { Component, LOCALE_ID, OnInit, inject } from '@angular/core';
 import { SeoService } from '../../../core/services/seo.service';
 import { RevealDirective } from '../../../shared/directives/reveal.directive';
 import {
-  TimelineItemComponent,
+  TimelineItem,
   TimelineJob,
-} from '../../../shared/molecules/timeline-item/timeline-item.component';
+} from '../../../shared/molecules/timeline-item/timeline-item';
 
 interface Education {
   institution: string;
@@ -17,7 +17,7 @@ interface Education {
 @Component({
   selector: 'app-experience',
   standalone: true,
-  imports: [TimelineItemComponent, RevealDirective],
+  imports: [TimelineItem, RevealDirective],
   styles: [`
     .page-title { animation: expSlideUp 500ms ease-out 80ms both; }
     .page-lead   { animation: expSlideUp 500ms ease-out 200ms both; }
@@ -106,7 +106,7 @@ interface Education {
     </div>
   `,
 })
-export class ExperienceComponent implements OnInit {
+export class Experience implements OnInit {
   private readonly seo = inject(SeoService);
   readonly localeId = inject(LOCALE_ID);
 

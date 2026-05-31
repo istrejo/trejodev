@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IconComponent } from '../../shared/atoms/icon/icon.component';
+import { Icon } from '../../shared/atoms/icon/icon';
 
 interface SocialLink {
   icon: 'github' | 'linkedin' | 'mail';
@@ -10,7 +10,7 @@ interface SocialLink {
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [IconComponent],
+  imports: [Icon],
   template: `
     <footer class="border-t border-border mt-24">
       <div
@@ -44,7 +44,7 @@ interface SocialLink {
     </footer>
   `,
 })
-export class FooterComponent {
+export class Footer {
   readonly year = new Date().getFullYear();
 
   readonly socialLinks: SocialLink[] = [

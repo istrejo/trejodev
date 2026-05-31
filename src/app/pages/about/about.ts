@@ -1,9 +1,9 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { SeoService } from '../../core/services/seo.service';
-import { ButtonComponent } from '../../shared/atoms/button/button.component';
-import { TagComponent } from '../../shared/atoms/tag/tag.component';
-import { IconComponent } from '../../shared/atoms/icon/icon.component';
+import { Button } from '../../shared/atoms/button/button';
+import { Tag } from '../../shared/atoms/tag/tag';
+import { Icon } from '../../shared/atoms/icon/icon';
 import { RevealDirective } from '../../shared/directives/reveal.directive';
 
 interface Principle {
@@ -20,7 +20,7 @@ interface ApproachStep {
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [RouterLink, ButtonComponent, TagComponent, IconComponent, RevealDirective],
+  imports: [RouterLink, Button, Tag, Icon, RevealDirective],
   styles: [`
     .about-hero-title { animation: aboutSlideUp 600ms ease-out 80ms both; }
     .about-hero-line  { animation: aboutSlideUp 400ms ease-out 220ms both; }
@@ -206,7 +206,7 @@ interface ApproachStep {
     </section>
   `,
 })
-export class AboutComponent implements OnInit {
+export class About implements OnInit {
   private readonly seo = inject(SeoService);
   readonly expertiseTags = [
     'Angular', 'TypeScript', 'Nx', 'Module Federation',

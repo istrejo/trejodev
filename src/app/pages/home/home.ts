@@ -1,9 +1,9 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { SeoService } from '../../core/services/seo.service';
-import { ButtonComponent } from '../../shared/atoms/button/button.component';
-import { TagComponent } from '../../shared/atoms/tag/tag.component';
-import { IconComponent } from '../../shared/atoms/icon/icon.component';
+import { Button } from '../../shared/atoms/button/button';
+import { Tag } from '../../shared/atoms/tag/tag';
+import { Icon } from '../../shared/atoms/icon/icon';
 import { RevealDirective } from '../../shared/directives/reveal.directive';
 
 const STACK_TAGS = [
@@ -30,7 +30,7 @@ const FEATURED_PROJECTS = [
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterLink, ButtonComponent, TagComponent, IconComponent, RevealDirective],
+  imports: [RouterLink, Button, Tag, Icon, RevealDirective],
   styles: [`
     .hero-eyebrow  { animation: heroSlideUp 500ms ease-out  80ms both; }
     .hero-title    { animation: heroSlideUp 600ms ease-out 180ms both; }
@@ -245,7 +245,7 @@ const FEATURED_PROJECTS = [
     </section>
   `,
 })
-export class HomeComponent implements OnInit {
+export class Home implements OnInit {
   private readonly seo = inject(SeoService);
   readonly stackTags = STACK_TAGS;
   readonly projects = FEATURED_PROJECTS;

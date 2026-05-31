@@ -34,7 +34,7 @@ export const NAV_ITEMS: NavItem[] = [
     </nav>
   `,
 })
-export class NavComponent {
+export class Nav {
   items = input<NavItem[]>(NAV_ITEMS);
   orientation = input<'horizontal' | 'vertical'>('horizontal');
   navClick = output<void>();

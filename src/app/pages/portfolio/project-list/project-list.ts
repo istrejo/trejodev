@@ -1,6 +1,6 @@
 import { Component, OnInit, computed, inject, signal } from '@angular/core';
-import { ProjectCardComponent } from '../../../shared/molecules/project-card/project-card.component';
-import { ChipComponent } from '../../../shared/atoms/chip/chip.component';
+import { ProjectCard } from '../../../shared/molecules/project-card/project-card';
+import { Chip } from '../../../shared/atoms/chip/chip';
 import { RevealDirective } from '../../../shared/directives/reveal.directive';
 import { SanityService } from '../../../core/services/sanity.service';
 import { SeoService } from '../../../core/services/seo.service';
@@ -9,7 +9,7 @@ import { ProjectSummary } from '../../../core/models/project.model';
 @Component({
   selector: 'app-project-list',
   standalone: true,
-  imports: [ProjectCardComponent, ChipComponent, RevealDirective],
+  imports: [ProjectCard, Chip, RevealDirective],
   styles: [`
     .page-title { animation: listSlideUp 500ms ease-out 80ms both; }
     .page-filters { animation: listSlideUp 500ms ease-out 200ms both; }
@@ -115,7 +115,7 @@ import { ProjectSummary } from '../../../core/models/project.model';
     </div>
   `,
 })
-export class ProjectListComponent implements OnInit {
+export class ProjectList implements OnInit {
   readonly sanity = inject(SanityService);
   private readonly seo = inject(SeoService);
 

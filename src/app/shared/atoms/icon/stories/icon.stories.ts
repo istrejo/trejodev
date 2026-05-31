@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { IconComponent } from '../icon.component';
+import { Icon } from '../icon';
 
-const meta: Meta<IconComponent> = {
+const meta: Meta<Icon> = {
   title: 'Atoms/Icon',
-  component: IconComponent,
+  component: Icon,
   tags: ['autodocs'],
   argTypes: {
     name: {
@@ -34,7 +34,7 @@ const meta: Meta<IconComponent> = {
 };
 
 export default meta;
-type Story = StoryObj<IconComponent>;
+type Story = StoryObj<Icon>;
 
 export const Github: Story = {
   args: { name: 'github', size: 'md' },

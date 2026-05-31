@@ -8,9 +8,9 @@ import {
   signal,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { ButtonComponent } from '../../../shared/atoms/button/button.component';
-import { IconComponent } from '../../../shared/atoms/icon/icon.component';
-import { TagComponent } from '../../../shared/atoms/tag/tag.component';
+import { Button } from '../../../shared/atoms/button/button';
+import { Icon } from '../../../shared/atoms/icon/icon';
+import { Tag } from '../../../shared/atoms/tag/tag';
 import { SanityService } from '../../../core/services/sanity.service';
 import { SeoService } from '../../../core/services/seo.service';
 import { Project } from '../../../core/models/project.model';
@@ -18,7 +18,7 @@ import { Project } from '../../../core/models/project.model';
 @Component({
   selector: 'app-project-detail',
   standalone: true,
-  imports: [RouterLink, ButtonComponent, TagComponent, IconComponent],
+  imports: [RouterLink, Button, Tag, Icon],
   template: `
     <!-- Loading -->
     @if (loading()) {
@@ -136,7 +136,7 @@ import { Project } from '../../../core/models/project.model';
     }
   `,
 })
-export class ProjectDetailComponent implements OnChanges {
+export class ProjectDetail implements OnChanges {
   slug = input.required<string>();
 
   private readonly sanity = inject(SanityService);

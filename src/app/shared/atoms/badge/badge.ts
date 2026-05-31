@@ -11,7 +11,7 @@ export type BadgeColor = 'accent-1' | 'accent-2' | 'neutral';
     </span>
   `,
 })
-export class BadgeComponent {
+export class Badge {
   color = input<BadgeColor>('neutral');
 
   classes = computed(() => {

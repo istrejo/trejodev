@@ -13,13 +13,13 @@ import {
   signal,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { IconComponent } from '../../shared/atoms/icon/icon.component';
-import { NavComponent } from '../nav/nav.component';
+import { Icon } from '../../shared/atoms/icon/icon';
+import { Nav } from '../nav/nav';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterLink, NavComponent, IconComponent],
+  imports: [RouterLink, Nav, Icon],
   animations: [
     trigger('mobileMenu', [
       transition(':enter', [
@@ -93,7 +93,7 @@ import { NavComponent } from '../nav/nav.component';
     <div class="h-16"></div>
   `,
 })
-export class HeaderComponent implements OnDestroy {
+export class Header implements OnDestroy {
   private readonly localeId = inject(LOCALE_ID);
   private readonly doc = inject(DOCUMENT);
 

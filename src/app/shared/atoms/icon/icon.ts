@@ -11,7 +11,7 @@ export type IconSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
   // but not setProperty on SVGSVGElement. This avoids the NotYetImplemented error.
   template: `<span [innerHTML]="svg()" style="display:inline-flex;line-height:0"></span>`,
 })
-export class IconComponent {
+export class Icon {
   name = input.required<IconName>();
   size = input<IconSize>('md');
 

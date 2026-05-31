@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { BadgeComponent } from '../badge.component';
+import { Badge } from '../badge';
 
-const meta: Meta<BadgeComponent> = {
+const meta: Meta<Badge> = {
   title: 'Atoms/Badge',
-  component: BadgeComponent,
+  component: Badge,
   tags: ['autodocs'],
   argTypes: {
     color: {
@@ -18,7 +18,7 @@ const meta: Meta<BadgeComponent> = {
 };
 
 export default meta;
-type Story = StoryObj<BadgeComponent>;
+type Story = StoryObj<Badge>;
 
 export const Angular: Story = {
   args: { color: 'accent-1' },

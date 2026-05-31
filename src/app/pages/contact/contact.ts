@@ -7,8 +7,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { ButtonComponent } from '../../shared/atoms/button/button.component';
-import { IconComponent } from '../../shared/atoms/icon/icon.component';
+import { Button } from '../../shared/atoms/button/button';
+import { Icon } from '../../shared/atoms/icon/icon';
 
 type FormState = 'idle' | 'submitting' | 'success' | 'error';
 
@@ -23,7 +23,7 @@ const INQUIRY_TYPES = [
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [ReactiveFormsModule, ButtonComponent, IconComponent],
+  imports: [ReactiveFormsModule, Button, Icon],
   styles: [`
     .page-title { animation: ctSlideUp 500ms ease-out 80ms both; }
     .page-form  { animation: ctSlideUp 500ms ease-out 200ms both; }
@@ -234,7 +234,7 @@ const INQUIRY_TYPES = [
     </div>
   `,
 })
-export class ContactComponent implements OnInit {
+export class Contact implements OnInit {
   private readonly http = inject(HttpClient);
   private readonly seo = inject(SeoService);
   private readonly fb = inject(FormBuilder);

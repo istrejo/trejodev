@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { ChipComponent } from '../chip.component';
+import { Chip } from '../chip';
 
-const meta: Meta<ChipComponent> = {
+const meta: Meta<Chip> = {
   title: 'Atoms/Chip',
-  component: ChipComponent,
+  component: Chip,
   tags: ['autodocs'],
   argTypes: {
     selected: { control: 'boolean' },
@@ -16,7 +16,7 @@ const meta: Meta<ChipComponent> = {
 };
 
 export default meta;
-type Story = StoryObj<ChipComponent>;
+type Story = StoryObj<Chip>;
 
 export const Unselected: Story = {
   args: { selected: false, disabled: false },

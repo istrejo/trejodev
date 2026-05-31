@@ -9,4 +9,4 @@ import { Component, input } from '@angular/core';
     </span>
   `,
 })
-export class TagComponent {}
+export class Tag {}

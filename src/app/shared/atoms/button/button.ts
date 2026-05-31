@@ -16,7 +16,7 @@ export type ButtonSize = 'sm' | 'md' | 'lg';
     </button>
   `,
 })
-export class ButtonComponent {
+export class Button {
   variant = input<ButtonVariant>('primary');
   size = input<ButtonSize>('md');
   type = input<'button' | 'submit' | 'reset'>('button');

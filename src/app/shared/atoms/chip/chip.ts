@@ -14,7 +14,7 @@ import { Component, computed, input, model } from '@angular/core';
     </button>
   `,
 })
-export class ChipComponent {
+export class Chip {
   selected = model<boolean>(false);
   disabled = input<boolean>(false);
 

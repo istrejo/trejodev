@@ -89,7 +89,7 @@ const LEVEL_LABEL: Record<Level, string> = {
     </div>
   `,
 })
-export class StackComponent implements OnInit {
+export class Stack implements OnInit {
   private readonly seo = inject(SeoService);
   readonly legend = (Object.entries(LEVEL_LABEL) as [Level, string][]).map(([level, label]) => ({
     level,

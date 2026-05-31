@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { TimelineItemComponent, TimelineJob } from '../timeline-item.component';
+import { TimelineItem, TimelineJob } from '../timeline-item';
 
 const MOCK_JOB: TimelineJob = {
   company: 'Digitalmente Studio',
@@ -27,9 +27,9 @@ const MOCK_PAST: TimelineJob = {
   highlights: ['Implementé design system reutilizado por 3 productos'],
 };
 
-const meta: Meta<TimelineItemComponent> = {
+const meta: Meta<TimelineItem> = {
   title: 'Molecules/TimelineItem',
-  component: TimelineItemComponent,
+  component: TimelineItem,
   tags: ['autodocs'],
   argTypes: {
     last: { control: 'boolean' },
@@ -42,7 +42,7 @@ const meta: Meta<TimelineItemComponent> = {
 };
 
 export default meta;
-type Story = StoryObj<TimelineItemComponent>;
+type Story = StoryObj<TimelineItem>;
 
 export const Current: Story = {
   args: { job: MOCK_JOB, last: false, locale: 'es' },

@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { TagComponent } from '../tag.component';
+import { Tag } from '../tag';
 
-const meta: Meta<TagComponent> = {
+const meta: Meta<Tag> = {
   title: 'Atoms/Tag',
-  component: TagComponent,
+  component: Tag,
   tags: ['autodocs'],
   render: () => ({
     template: `<app-tag>Angular</app-tag>`,
@@ -11,7 +11,7 @@ const meta: Meta<TagComponent> = {
 };
 
 export default meta;
-type Story = StoryObj<TagComponent>;
+type Story = StoryObj<Tag>;
 
 export const Default: Story = {
   render: () => ({

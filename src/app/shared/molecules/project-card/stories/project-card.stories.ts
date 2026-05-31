@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { applicationConfig } from '@storybook/angular';
 import { provideRouter } from '@angular/router';
-import { ProjectCardComponent } from '../project-card.component';
+import { ProjectCard } from '../project-card';
 import { ProjectSummary } from '../../../../core/models/project.model';
 
 const MOCK_PROJECT: ProjectSummary = {
@@ -32,9 +32,9 @@ const MOCK_NO_IMAGE: ProjectSummary = {
   repo: undefined,
 };
 
-const meta: Meta<ProjectCardComponent> = {
+const meta: Meta<ProjectCard> = {
   title: 'Molecules/ProjectCard',
-  component: ProjectCardComponent,
+  component: ProjectCard,
   tags: ['autodocs'],
   decorators: [
     applicationConfig({ providers: [provideRouter([])] }),
@@ -49,7 +49,7 @@ const meta: Meta<ProjectCardComponent> = {
 };
 
 export default meta;
-type Story = StoryObj<ProjectCardComponent>;
+type Story = StoryObj<ProjectCard>;
 
 export const Featured: Story = {
   args: { project: MOCK_PROJECT },

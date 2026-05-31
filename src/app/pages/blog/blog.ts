@@ -10,7 +10,7 @@ import { SeoService } from '../../core/services/seo.service';
     </div>
   `,
 })
-export class BlogComponent implements OnInit {
+export class Blog implements OnInit {
   private readonly seo = inject(SeoService);
 
   ngOnInit(): void {

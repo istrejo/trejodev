@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import { TagComponent } from '../../atoms/tag/tag.component';
+import { Tag } from '../../atoms/tag/tag';
 
 export interface TimelineJob {
   company: string;
@@ -15,7 +15,7 @@ export interface TimelineJob {
 @Component({
   selector: 'app-timeline-item',
   standalone: true,
-  imports: [TagComponent],
+  imports: [Tag],
   template: `
     <div class="flex gap-6">
       <!-- Timeline indicator -->
@@ -76,7 +76,7 @@ export interface TimelineJob {
     </div>
   `,
 })
-export class TimelineItemComponent {
+export class TimelineItem {
   job = input.required<TimelineJob>();
   last = input<boolean>(false);
   locale = input<string>('es');

@@ -1,13 +1,13 @@
 import { Component, LOCALE_ID, computed, inject, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { IconComponent } from '../../atoms/icon/icon.component';
-import { TagComponent } from '../../atoms/tag/tag.component';
+import { Icon } from '../../atoms/icon/icon';
+import { Tag } from '../../atoms/tag/tag';
 import { ProjectSummary } from '../../../core/models/project.model';
 
 @Component({
   selector: 'app-project-card',
   standalone: true,
-  imports: [RouterLink, TagComponent, IconComponent],
+  imports: [RouterLink, Tag, Icon],
   styles: [`
     :host { display: block; height: 100%; }
     .card {
@@ -101,7 +101,7 @@ import { ProjectSummary } from '../../../core/models/project.model';
     </a>
   `,
 })
-export class ProjectCardComponent {
+export class ProjectCard {
   project = input.required<ProjectSummary>();
 
   private readonly localeId = inject(LOCALE_ID);
