@@ -1,4 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/angular';
+import { applicationConfig } from '@storybook/angular';
+import { provideRouter } from '@angular/router';
 import { ProjectCardComponent } from '../project-card.component';
 import { ProjectSummary } from '../../../../core/models/project.model';
 
@@ -34,6 +36,9 @@ const meta: Meta<ProjectCardComponent> = {
   title: 'Molecules/ProjectCard',
   component: ProjectCardComponent,
   tags: ['autodocs'],
+  decorators: [
+    applicationConfig({ providers: [provideRouter([])] }),
+  ],
   argTypes: {
     project: { control: 'object' },
   },
