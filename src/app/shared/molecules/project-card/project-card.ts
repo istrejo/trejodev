@@ -1,4 +1,4 @@
-import { Component, LOCALE_ID, computed, inject, input } from '@angular/core';
+import { Component, LOCALE_ID, computed, inject, input, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Icon } from '../../atoms/icon/icon';
 import { Tag } from '../../atoms/tag/tag';
@@ -24,13 +24,14 @@ import { ProjectSummary } from '../../../core/models/project.model';
       class="card flex flex-col h-full border border-border bg-surface p-6 group"
     >
       <!-- Image or placeholder -->
-      @if (project().imageUrl) {
+      @if (project().imageUrl && imageVisible()) {
         <div class="mb-5 overflow-hidden aspect-video">
           <img
             [src]="project().imageUrl"
             [alt]="project().title"
             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
             loading="lazy"
+            (error)="imageVisible.set(false)"
           />
         </div>
       } @else {
@@ -105,6 +106,8 @@ export class ProjectCard {
   project = input.required<ProjectSummary>();
 
   private readonly localeId = inject(LOCALE_ID);
+
+  readonly imageVisible = signal(true);
 
   description = computed(() => {
     const p = this.project();

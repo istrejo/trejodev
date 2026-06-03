@@ -9,6 +9,7 @@ import express from 'express';
 import { join } from 'node:path';
 import { ProjectApiDetail, ProjectApiSummary } from './app/core/models/project-api.model';
 import { PublicProjectRow, toProjectApiDetail, toProjectApiSummary } from './server/project-api';
+import { buildSitemapXml } from './server/sitemap';
 
 const browserDistFolder = join(import.meta.dirname, '../browser');
 const CACHE_TTL_MS = 60_000;
@@ -220,6 +221,16 @@ app.get('/api/projects/:slug', async (req, res) => {
   } catch (error) {
     console.error('[projects:detail] error:', error);
     res.status(503).json({ error: 'Project detail API is unavailable.' });
+  }
+});
+
+app.get('/sitemap.xml', async (_req, res) => {
+  try {
+    const projects = await loadPublishedProjects();
+    res.type('application/xml').send(buildSitemapXml(projects.map((project) => project.slug)));
+  } catch (error) {
+    console.error('[sitemap] error:', error);
+    res.status(503).type('application/xml').send(buildSitemapXml([]));
   }
 });
 

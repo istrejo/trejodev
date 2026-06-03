@@ -14,6 +14,7 @@ import { Tag } from '../../../shared/atoms/tag/tag';
 import { ProjectDataService } from '../../../core/services/project-data.service';
 import { SeoService } from '../../../core/services/seo.service';
 import { Project } from '../../../core/models/project.model';
+import { getLocalizedProjectDescription, getProjectSeoConfig } from '../../../core/models/project-seo';
 
 @Component({
   selector: 'app-project-detail',
@@ -87,14 +88,21 @@ import { Project } from '../../../core/models/project.model';
       </section>
 
       <!-- Image -->
-      @if (p.imageUrl) {
+      @if (p.imageUrl && coverVisible()) {
         <div class="max-w-4xl mx-auto px-6 py-8">
           <img
             [src]="p.imageUrl"
             [alt]="p.title"
             class="w-full border border-border"
             loading="eager"
+            (error)="coverVisible.set(false)"
           />
+        </div>
+      } @else {
+        <div class="max-w-4xl mx-auto px-6 py-8">
+          <div class="aspect-[16/9] border border-border bg-surface flex items-center justify-center">
+            <span class="font-mono text-sm text-muted tracking-widest uppercase">Preview unavailable</span>
+          </div>
         </div>
       }
 
@@ -145,11 +153,12 @@ export class ProjectDetail {
 
   readonly loading = signal(true);
   readonly project = signal<Project | null>(null);
+  readonly coverVisible = signal(false);
 
   readonly description = computed(() => {
     const p = this.project();
     if (!p) return '';
-    return this.localeId.startsWith('en') ? p.description_en : p.description_es;
+    return getLocalizedProjectDescription(this.localeId, p);
   });
 
   private readonly loadProjectEffect = effect((onCleanup) => {
@@ -162,17 +171,16 @@ export class ProjectDetail {
       next: (project) => {
         this.project.set(project);
         this.loading.set(false);
+        this.coverVisible.set(Boolean(project?.imageUrl));
 
         if (project) {
-          const description = this.localeId.startsWith('en')
-            ? project.description_en
-            : project.description_es;
-          this.seo.set({ title: project.title, description, url: `/projects/${project.slug}` });
+          this.seo.set(getProjectSeoConfig(this.localeId, project));
         }
       },
       error: () => {
         this.project.set(null);
         this.loading.set(false);
+        this.coverVisible.set(false);
       },
     });
 

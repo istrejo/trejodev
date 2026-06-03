@@ -28,7 +28,7 @@ This file turns `SUPABASE_IMPLEMENTATION_PLAN.md` into executable sprint slices.
 | Sprint 3 | Phase 3 — Server adapter            | Completed   |
 | Sprint 4 | Phase 4 — Angular wiring            | Completed   |
 | Sprint 5 | Phase 5 — Editorial workflow        | Completed   |
-| Sprint 6 | Phase 6 — SEO and quality hardening | Pending     |
+| Sprint 6 | Phase 6 — SEO and quality hardening | Completed   |
 
 ## Sprint 1 — Supabase Foundation
 
@@ -208,10 +208,10 @@ Goal: finish the migration with confidence, test coverage, and SEO-safe behavior
 
 Checklist:
 
-- [ ] Generate sitemap entries from live projects.
-- [ ] Add tests for server mapping and `ProjectDataService`.
-- [ ] Verify project detail metadata for both locales.
-- [ ] Add fallback handling for missing cover image or broken slug.
+- [x] Generate sitemap entries from live projects.
+- [x] Add tests for server mapping and `ProjectDataService`.
+- [x] Verify project detail metadata for both locales.
+- [x] Add fallback handling for missing cover image or broken slug.
 
 Repo impact:
 
@@ -230,6 +230,13 @@ Verification:
 - Tests pass.
 - Sitemap includes live projects.
 - Locale-specific detail metadata is correct.
+
+Notes:
+
+- `sitemap.xml` is now served dynamically by Express using live published project slugs from Supabase.
+- Server mapping, API service mapping, and locale-specific SEO helpers are covered by Vitest.
+- Project cards and detail pages now fall back cleanly when a cover is missing or fails to load.
+- `vitest.config.ts` and `src/test-setup.ts` initialize Angular's testing environment for the repo's Vitest workflow.
 
 ## Working Rule
 
