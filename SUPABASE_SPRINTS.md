@@ -27,7 +27,7 @@ This file turns `SUPABASE_IMPLEMENTATION_PLAN.md` into executable sprint slices.
 | Sprint 2 | Phase 2 — Data migration            | Completed   |
 | Sprint 3 | Phase 3 — Server adapter            | Completed   |
 | Sprint 4 | Phase 4 — Angular wiring            | Completed   |
-| Sprint 5 | Phase 5 — Editorial workflow        | Pending     |
+| Sprint 5 | Phase 5 — Editorial workflow        | Completed   |
 | Sprint 6 | Phase 6 — SEO and quality hardening | Pending     |
 
 ## Sprint 1 — Supabase Foundation
@@ -179,9 +179,9 @@ Goal: make the publishing flow usable without touching the frontend repo.
 
 Checklist:
 
-- [ ] Validate that Supabase Studio is enough for daily use.
-- [ ] Document the publish workflow: upload image, fill fields, toggle `published`.
-- [ ] Only if Studio is painful, create a separate admin app.
+- [x] Validate that Supabase Studio is enough for daily use.
+- [x] Document the publish workflow: upload image, fill fields, toggle `published`.
+- [x] Only if Studio is painful, create a separate admin app.
 
 Repo impact:
 
@@ -195,6 +195,12 @@ Done when:
 Verification:
 
 - Manual editorial test from draft to published works end-to-end.
+
+Notes:
+
+- Workflow documented in `SUPABASE_PUBLISH_WORKFLOW.md`.
+- Current scope does not justify a custom admin app yet; Supabase Studio remains the editorial surface.
+- A true manual publish test still depends on finishing the admin-user setup from Sprint 1.
 
 ## Sprint 6 — SEO And Quality Hardening
 
