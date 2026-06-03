@@ -24,7 +24,7 @@ This file turns `SUPABASE_IMPLEMENTATION_PLAN.md` into executable sprint slices.
 | Sprint   | Maps to phase                       | Status      |
 | -------- | ----------------------------------- | ----------- |
 | Sprint 1 | Phase 1 — Supabase foundation       | In progress (4/5) |
-| Sprint 2 | Phase 2 — Data migration            | Pending     |
+| Sprint 2 | Phase 2 — Data migration            | Completed   |
 | Sprint 3 | Phase 3 — Server adapter            | Pending     |
 | Sprint 4 | Phase 4 — Angular wiring            | Pending     |
 | Sprint 5 | Phase 5 — Editorial workflow        | Pending     |
@@ -76,10 +76,10 @@ Goal: move current hardcoded portfolio content into Supabase without changing fr
 
 Checklist:
 
-- [ ] Convert `src/app/core/data/projects.data.ts` records into SQL seed or migration data.
-- [ ] Upload cover images to bucket `projects`.
-- [ ] Set `cover_path` and `published = true`.
-- [ ] Verify ordering and slugs.
+- [x] Convert `src/app/core/data/projects.data.ts` records into SQL seed or migration data.
+- [x] Upload cover images to bucket `projects` or preserve `null` when the current local source has no cover assets.
+- [x] Set `cover_path` and `published = true`.
+- [x] Verify ordering and slugs.
 
 Repo impact:
 
@@ -95,7 +95,12 @@ Done when:
 Verification:
 
 - Query results from Supabase match current local content.
-- Cover paths resolve to uploaded storage objects.
+- Cover paths either resolve to uploaded storage objects or remain `null` when the current source has no cover asset.
+
+Notes:
+
+- Seed migration applied: `seed_initial_projects`.
+- The current local portfolio source has no cover images, so the initial seed preserves `cover_path = null` for parity instead of inventing assets.
 
 ## Sprint 3 — Server Adapter
 
