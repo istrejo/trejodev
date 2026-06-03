@@ -1,4 +1,7 @@
-# CLAUDE.md — trejodev
+# AGENTS.md — trejodev
+
+Shared agent instructions for AI coding tools (Codex, Copilot Workspace, Cursor, etc.).
+For Claude-specific config see `CLAUDE.md`. Both files must stay in sync.
 
 Portfolio personal de Alejandro Trejo. Angular 21 con SSR, Tailwind 4, i18n (es/en), Storybook y Vitest.
 

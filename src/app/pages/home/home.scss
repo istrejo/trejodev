@@ -1,0 +1,38 @@
+.hero-eyebrow  { animation: heroSlideUp 500ms ease-out  80ms both; }
+.hero-title    { animation: heroSlideUp 600ms ease-out 180ms both; }
+.hero-divider  { animation: heroSlideUp 400ms ease-out 300ms both; }
+.hero-tagline  { animation: heroSlideUp 500ms ease-out 360ms both; }
+.hero-sub      { animation: heroSlideUp 500ms ease-out 460ms both; }
+.hero-ctas     { animation: heroSlideUp 500ms ease-out 560ms both; }
+.hero-visual   { animation: heroFadeIn  700ms ease-out 300ms both; }
+
+@keyframes heroSlideUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes heroFadeIn {
+  from { opacity: 0; transform: translateY(10px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0)   scale(1); }
+}
+
+.code-block {
+  font-family: var(--font-code);
+  font-size: 0.78rem;
+  line-height: 1.7;
+  color: var(--color-muted);
+}
+
+.code-key   { color: #BB9AF7; }
+.code-str   { color: #9ECE6A; }
+.code-arr   { color: var(--color-accent-2); }
+.code-cmnt  { color: #4a4a6a; font-style: italic; }
+
+.project-card-hover {
+  transition: border-color 200ms, transform 200ms;
+
+  &:hover {
+    border-color: color-mix(in srgb, var(--color-accent-1) 40%, transparent);
+    transform: translateY(-2px);
+  }
+}
