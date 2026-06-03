@@ -185,22 +185,42 @@ const STACK_TAGS = [
         </a>
       </div>
 
-      <div class="grid md:grid-cols-2 gap-6">
-        @for (project of projects(); track project.slug) {
-          <a
-            [routerLink]="['/projects', project.slug]"
-            class="block border border-border bg-surface p-6 project-card-hover"
-          >
-            <h3 class="font-mono font-medium text-text mb-2">{{ project.title }}</h3>
-            <p class="text-sm text-muted leading-relaxed mb-4">{{ projectDescription(project) }}</p>
-            <div class="flex flex-wrap gap-2">
-              @for (tag of project.stack.slice(0, 3); track tag) {
-                <app-tag>{{ tag }}</app-tag>
-              }
+      @if (projectsLoading()) {
+        <div class="grid md:grid-cols-2 gap-6">
+          @for (_item of [1, 2]; track _item) {
+            <div class="animate-pulse border border-border bg-surface p-6 space-y-4">
+              <div class="h-5 bg-border/40 rounded w-2/3"></div>
+              <div class="h-4 bg-border/40 rounded w-full"></div>
+              <div class="h-4 bg-border/40 rounded w-5/6"></div>
+              <div class="flex gap-2 pt-2">
+                <div class="h-6 w-20 bg-border/40 rounded-sm"></div>
+                <div class="h-6 w-24 bg-border/40 rounded-sm"></div>
+              </div>
             </div>
-          </a>
-        }
-      </div>
+          }
+        </div>
+      } @else if (projects().length === 0) {
+        <div class="border border-border bg-surface p-8 text-center">
+          <p class="font-mono text-sm text-muted">Todavia no hay proyectos publicados.</p>
+        </div>
+      } @else {
+        <div class="grid md:grid-cols-2 gap-6">
+          @for (project of projects(); track project.slug) {
+            <a
+              [routerLink]="['/projects', project.slug]"
+              class="block border border-border bg-surface p-6 project-card-hover"
+            >
+              <h3 class="font-mono font-medium text-text mb-2">{{ project.title }}</h3>
+              <p class="text-sm text-muted leading-relaxed mb-4">{{ projectDescription(project) }}</p>
+              <div class="flex flex-wrap gap-2">
+                @for (tag of project.stack.slice(0, 3); track tag) {
+                  <app-tag>{{ tag }}</app-tag>
+                }
+              </div>
+            </a>
+          }
+        </div>
+      }
 
       <div class="mt-6 md:hidden">
         <app-button variant="ghost" size="sm">
@@ -239,6 +259,7 @@ export class Home implements OnInit {
 
   readonly stackTags = STACK_TAGS;
   readonly projects = signal<ProjectSummary[]>([]);
+  readonly projectsLoading = signal(true);
 
   readonly philosophy = [
     { label: 'Arquitectura > Framework', desc: 'El framework es un detalle de implementación.' },
@@ -253,8 +274,15 @@ export class Home implements OnInit {
       url: '/',
     });
 
-    this.projectData.getFeaturedProjects().subscribe((projects) => {
-      this.projects.set(projects);
+    this.projectData.getFeaturedProjects().subscribe({
+      next: (projects) => {
+        this.projects.set(projects);
+        this.projectsLoading.set(false);
+      },
+      error: () => {
+        this.projects.set([]);
+        this.projectsLoading.set(false);
+      },
     });
   }
 

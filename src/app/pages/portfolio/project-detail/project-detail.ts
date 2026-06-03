@@ -158,16 +158,22 @@ export class ProjectDetail {
     this.loading.set(true);
     this.project.set(null);
 
-    const subscription = this.projectData.getProjectBySlug(slug).subscribe((project) => {
-      this.project.set(project);
-      this.loading.set(false);
+    const subscription = this.projectData.getProjectBySlug(slug).subscribe({
+      next: (project) => {
+        this.project.set(project);
+        this.loading.set(false);
 
-      if (project) {
-        const description = this.localeId.startsWith('en')
-          ? project.description_en
-          : project.description_es;
-        this.seo.set({ title: project.title, description, url: `/projects/${project.slug}` });
-      }
+        if (project) {
+          const description = this.localeId.startsWith('en')
+            ? project.description_en
+            : project.description_es;
+          this.seo.set({ title: project.title, description, url: `/projects/${project.slug}` });
+        }
+      },
+      error: () => {
+        this.project.set(null);
+        this.loading.set(false);
+      },
     });
 
     onCleanup(() => subscription.unsubscribe());

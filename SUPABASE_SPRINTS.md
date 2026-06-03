@@ -26,7 +26,7 @@ This file turns `SUPABASE_IMPLEMENTATION_PLAN.md` into executable sprint slices.
 | Sprint 1 | Phase 1 — Supabase foundation       | In progress (4/5) |
 | Sprint 2 | Phase 2 — Data migration            | Completed   |
 | Sprint 3 | Phase 3 — Server adapter            | Completed   |
-| Sprint 4 | Phase 4 — Angular wiring            | Pending     |
+| Sprint 4 | Phase 4 — Angular wiring            | Completed   |
 | Sprint 5 | Phase 5 — Editorial workflow        | Pending     |
 | Sprint 6 | Phase 6 — SEO and quality hardening | Pending     |
 
@@ -143,10 +143,10 @@ Goal: switch the app from local data to internal API reads without breaking the 
 
 Checklist:
 
-- [ ] Replace local project data reads in `ProjectDataService`.
-- [ ] Keep `Project` and `ProjectSummary` model contracts stable.
-- [ ] Add loading and empty-state coverage where needed.
-- [ ] Verify list, featured teaser, and detail page in SSR.
+- [x] Replace local project data reads in `ProjectDataService`.
+- [x] Keep `Project` and `ProjectSummary` model contracts stable.
+- [x] Add loading and empty-state coverage where needed.
+- [x] Verify list, featured teaser, and detail page in SSR.
 
 Repo impact:
 
@@ -164,6 +164,14 @@ Verification:
 
 - Home featured teaser loads correctly.
 - `/projects` and `/projects/:slug` render correctly in SSR.
+
+Notes:
+
+- `ProjectDataService` now reads `/api/projects`, `/api/projects/featured`, and `/api/projects/:slug` through `HttpClient`.
+- The service uses Angular's `REQUEST` token during SSR to build absolute API URLs on the server.
+- The frontend contract remains stable: summaries still expose `_id`, `order`, `imageUrl`, `url`, and `repo`; detail pages still consume localized `highlights` after service-side mapping.
+- Home, list, and detail now handle API errors without staying forever in loading state.
+- Local runtime SSR verification for `/projects` and `/projects/:slug` is limited by Angular's host allowlist guard in this environment, but build-time prerender with Supabase envs confirmed the home route is rendering Supabase-backed content.
 
 ## Sprint 5 — Editorial Workflow
 

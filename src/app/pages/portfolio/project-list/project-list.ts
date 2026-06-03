@@ -137,9 +137,15 @@ export class ProjectList implements OnInit {
   load(): void {
     this.loading.set(true);
 
-    this.projectData.getProjects().subscribe((projects) => {
-      this.allProjects.set(projects);
-      this.loading.set(false);
+    this.projectData.getProjects().subscribe({
+      next: (projects) => {
+        this.allProjects.set(projects);
+        this.loading.set(false);
+      },
+      error: () => {
+        this.allProjects.set([]);
+        this.loading.set(false);
+      },
     });
   }
 
