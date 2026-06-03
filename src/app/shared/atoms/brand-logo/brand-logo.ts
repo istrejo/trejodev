@@ -1,0 +1,36 @@
+import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
+
+@Component({
+  selector: 'app-brand-logo',
+  standalone: true,
+  imports: [RouterLink],
+  styleUrl: './brand-logo.scss',
+  template: `
+    <a routerLink="/" class="brand-logo" aria-label="Trejodev logo">
+      <svg
+        viewBox="0 0 400 400"
+        class="brand-logo__svg"
+        role="img"
+        aria-hidden="true"
+      >
+        <rect class="brand-logo__bg" width="400" height="400" rx="72" />
+
+        <g class="logo-state logo-state--triangle">
+          <path class="triangle-outline" d="M120 276 L200 116 L280 276 Z" />
+          <path class="triangle-inner" d="M169 198 L200 136 L231 198" />
+          <rect class="triangle-dot" x="190" y="241" width="21" height="21" />
+        </g>
+
+        <g class="logo-state logo-state--t">
+          <path class="t-red" d="M88 134 H312" />
+          <path class="t-white" d="M200 130 V310" />
+          <path class="t-red-small t-red-small--left" d="M146 134 V170" />
+          <path class="t-red-small t-red-small--right" d="M263 134 V160" />
+          <rect class="t-red-block" x="190" y="220" width="22" height="22" />
+        </g>
+      </svg>
+    </a>
+  `,
+})
+export class BrandLogo {}

@@ -7,7 +7,7 @@ import { ProjectSummary } from '../../../../core/models/project.model';
 const MOCK_PROJECT: ProjectSummary = {
   _id: '1',
   title: 'eCommerce Microfrontend',
-  slug: { current: 'ecommerce-mfe' },
+  slug: 'ecommerce-mfe',
   description_es: 'Arquitectura de microfrontends con Module Federation, Nx y Angular — shell + 4 remotes independientes con CI/CD por equipo.',
   description_en: 'Microfrontend architecture with Module Federation, Nx and Angular — shell + 4 independent remotes with per-team CI/CD.',
   stack: ['Angular', 'Nx', 'Module Federation', 'TypeScript', 'Docker'],
@@ -22,7 +22,7 @@ const MOCK_NO_IMAGE: ProjectSummary = {
   ...MOCK_PROJECT,
   _id: '2',
   title: 'Legalo App',
-  slug: { current: 'legalo-app' },
+  slug: 'legalo-app',
   description_es: 'Plataforma legal SaaS — arquitectura hexagonal, signals-based state, SSR y rendimiento optimizado.',
   description_en: 'Legal SaaS platform — hexagonal architecture, signals-based state, SSR and optimized performance.',
   stack: ['Angular', 'SSR', 'TypeScript', 'Hexagonal Architecture'],
@@ -70,8 +70,8 @@ export const Grid: Story = {
     `,
     props: {
       p1: MOCK_PROJECT,
-      p2: { ...MOCK_NO_IMAGE, title: 'Platzi Ratings', slug: { current: 'platzi-ratings' }, stack: ['React', 'Node.js', 'PostgreSQL'] },
-      p3: { ...MOCK_NO_IMAGE, title: 'Mastery Habits', slug: { current: 'mastery-habits' }, stack: ['Go', 'Bubbletea', 'SQLite'] },
+      p2: { ...MOCK_NO_IMAGE, title: 'Platzi Ratings', slug: 'platzi-ratings', stack: ['React', 'Node.js', 'PostgreSQL'] },
+      p3: { ...MOCK_NO_IMAGE, title: 'Mastery Habits', slug: 'mastery-habits', stack: ['Go', 'Bubbletea', 'SQLite'] },
     },
   }),
 };

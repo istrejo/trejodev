@@ -1,8 +1,8 @@
 import {
   Component,
   LOCALE_ID,
-  OnChanges,
   computed,
+  effect,
   inject,
   input,
   signal,
@@ -11,7 +11,7 @@ import { RouterLink } from '@angular/router';
 import { Button } from '../../../shared/atoms/button/button';
 import { Icon } from '../../../shared/atoms/icon/icon';
 import { Tag } from '../../../shared/atoms/tag/tag';
-import { SanityService } from '../../../core/services/sanity.service';
+import { ProjectDataService } from '../../../core/services/project-data.service';
 import { SeoService } from '../../../core/services/seo.service';
 import { Project } from '../../../core/models/project.model';
 
@@ -136,10 +136,10 @@ import { Project } from '../../../core/models/project.model';
     }
   `,
 })
-export class ProjectDetail implements OnChanges {
+export class ProjectDetail {
   slug = input.required<string>();
 
-  private readonly sanity = inject(SanityService);
+  private readonly projectData = inject(ProjectDataService);
   private readonly seo = inject(SeoService);
   private readonly localeId = inject(LOCALE_ID);
 
@@ -152,22 +152,24 @@ export class ProjectDetail implements OnChanges {
     return this.localeId.startsWith('en') ? p.description_en : p.description_es;
   });
 
-  ngOnChanges(): void {
+  private readonly loadProjectEffect = effect((onCleanup) => {
+    const slug = this.slug();
+
     this.loading.set(true);
     this.project.set(null);
 
-    this.sanity.getProjectBySlug(this.slug()).subscribe({
-      next: (p) => {
-        this.project.set(p);
-        this.loading.set(false);
-        if (p) {
-          const desc = this.localeId.startsWith('en') ? p.description_en : p.description_es;
-          this.seo.set({ title: p.title, description: desc, url: `/projects/${p.slug}` });
-        }
-      },
-      error: () => {
-        this.loading.set(false);
-      },
+    const subscription = this.projectData.getProjectBySlug(slug).subscribe((project) => {
+      this.project.set(project);
+      this.loading.set(false);
+
+      if (project) {
+        const description = this.localeId.startsWith('en')
+          ? project.description_en
+          : project.description_es;
+        this.seo.set({ title: project.title, description, url: `/projects/${project.slug}` });
+      }
     });
-  }
+
+    onCleanup(() => subscription.unsubscribe());
+  });
 }
