@@ -25,7 +25,7 @@ This file turns `SUPABASE_IMPLEMENTATION_PLAN.md` into executable sprint slices.
 | -------- | ----------------------------------- | ----------- |
 | Sprint 1 | Phase 1 — Supabase foundation       | In progress (4/5) |
 | Sprint 2 | Phase 2 — Data migration            | Completed   |
-| Sprint 3 | Phase 3 — Server adapter            | Pending     |
+| Sprint 3 | Phase 3 — Server adapter            | Completed   |
 | Sprint 4 | Phase 4 — Angular wiring            | Pending     |
 | Sprint 5 | Phase 5 — Editorial workflow        | Pending     |
 | Sprint 6 | Phase 6 — SEO and quality hardening | Pending     |
@@ -108,12 +108,12 @@ Goal: add a server-side query layer between Angular and Supabase.
 
 Checklist:
 
-- [ ] Install `@supabase/supabase-js`.
-- [ ] Add server-side Supabase client setup.
-- [ ] Implement `GET /api/projects`.
-- [ ] Implement `GET /api/projects/featured`.
-- [ ] Implement `GET /api/projects/:slug`.
-- [ ] Add basic in-memory cache with TTL.
+- [x] Install `@supabase/supabase-js`.
+- [x] Add server-side Supabase client setup.
+- [x] Implement `GET /api/projects`.
+- [x] Implement `GET /api/projects/featured`.
+- [x] Implement `GET /api/projects/:slug`.
+- [x] Add basic in-memory cache with TTL.
 
 Repo impact:
 
@@ -131,6 +131,11 @@ Verification:
 
 - Endpoint responses match expected list, featured subset, and detail payloads.
 - SSR path can read through the server API without browser-only dependencies.
+
+Notes:
+
+- The server reads Supabase with `SUPABASE_SERVICE_ROLE_KEY` when available, otherwise `SUPABASE_ANON_KEY` for public-read queries.
+- API contract stays close to the existing frontend contract, with detail responses carrying `highlights_es` and `highlights_en` for later locale mapping in Angular.
 
 ## Sprint 4 — Angular Wiring
 

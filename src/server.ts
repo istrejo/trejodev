@@ -4,13 +4,182 @@ import {
   isMainModule,
   writeResponseToNodeResponse,
 } from '@angular/ssr/node';
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import express from 'express';
 import { join } from 'node:path';
+import { ProjectApiDetail, ProjectApiSummary } from './app/core/models/project-api.model';
+import { PublicProjectRow, toProjectApiDetail, toProjectApiSummary } from './server/project-api';
 
 const browserDistFolder = join(import.meta.dirname, '../browser');
+const CACHE_TTL_MS = 60_000;
 
 const app = express();
 const angularApp = new AngularNodeAppEngine();
+
+type CacheEntry<T> = {
+  expiresAt: number;
+  value: T;
+};
+
+const apiCache = new Map<string, CacheEntry<unknown>>();
+
+let supabaseClient: SupabaseClient | null | undefined;
+
+function getCacheValue<T>(key: string): T | null {
+  const entry = apiCache.get(key);
+
+  if (!entry) {
+    return null;
+  }
+
+  if (Date.now() >= entry.expiresAt) {
+    apiCache.delete(key);
+    return null;
+  }
+
+  return entry.value as T;
+}
+
+function setCacheValue<T>(key: string, value: T): T {
+  apiCache.set(key, { value, expiresAt: Date.now() + CACHE_TTL_MS });
+  return value;
+}
+
+function getSupabaseClient(): SupabaseClient | null {
+  if (supabaseClient !== undefined) {
+    return supabaseClient;
+  }
+
+  const url = process.env['SUPABASE_URL'];
+  const key = process.env['SUPABASE_SERVICE_ROLE_KEY'] ?? process.env['SUPABASE_ANON_KEY'];
+
+  if (!url || !key) {
+    supabaseClient = null;
+    return supabaseClient;
+  }
+
+  supabaseClient = createClient(url, key, {
+    auth: {
+      autoRefreshToken: false,
+      persistSession: false,
+    },
+  });
+
+  return supabaseClient;
+}
+
+function getProjectImageUrl(client: SupabaseClient, coverPath: string | null): string | undefined {
+  if (!coverPath) {
+    return undefined;
+  }
+
+  return client.storage.from('projects').getPublicUrl(coverPath).data.publicUrl;
+}
+
+function withProjectImage(client: SupabaseClient, row: PublicProjectRow): string | undefined {
+  return getProjectImageUrl(client, row.cover_path);
+}
+
+async function loadPublishedProjects(): Promise<ProjectApiSummary[]> {
+  const cached = getCacheValue<ProjectApiSummary[]>('projects:list');
+
+  if (cached) {
+    return cached;
+  }
+
+  const client = getSupabaseClient();
+
+  if (!client) {
+    throw new Error('Supabase server client is not configured.');
+  }
+
+  const { data, error } = await client
+    .from('projects')
+    .select(
+      'id, slug, title, description_es, description_en, role, stack, featured, display_order, project_url, repo_url, cover_path, published',
+    )
+    .eq('published', true)
+    .order('display_order', { ascending: true });
+
+  if (error) {
+    throw error;
+  }
+
+  return setCacheValue(
+    'projects:list',
+    (data as PublicProjectRow[]).map((row) => toProjectApiSummary(row, withProjectImage(client, row))),
+  );
+}
+
+async function loadFeaturedProjects(): Promise<ProjectApiSummary[]> {
+  const cached = getCacheValue<ProjectApiSummary[]>('projects:featured');
+
+  if (cached) {
+    return cached;
+  }
+
+  const client = getSupabaseClient();
+
+  if (!client) {
+    throw new Error('Supabase server client is not configured.');
+  }
+
+  const { data, error } = await client
+    .from('projects')
+    .select(
+      'id, slug, title, description_es, description_en, role, stack, featured, display_order, project_url, repo_url, cover_path, published',
+    )
+    .eq('published', true)
+    .eq('featured', true)
+    .order('display_order', { ascending: true });
+
+  if (error) {
+    throw error;
+  }
+
+  return setCacheValue(
+    'projects:featured',
+    (data as PublicProjectRow[]).map((row) => toProjectApiSummary(row, withProjectImage(client, row))),
+  );
+}
+
+async function loadProjectBySlug(slug: string): Promise<ProjectApiDetail | null> {
+  const cached = getCacheValue<ProjectApiDetail | null>(`projects:detail:${slug}`);
+
+  if (cached !== null) {
+    return cached;
+  }
+
+  const client = getSupabaseClient();
+
+  if (!client) {
+    throw new Error('Supabase server client is not configured.');
+  }
+
+  const { data, error } = await client
+    .from('projects')
+    .select(
+      'id, slug, title, description_es, description_en, role, stack, highlights_es, highlights_en, featured, display_order, project_url, repo_url, cover_path, published',
+    )
+    .eq('published', true)
+    .eq('slug', slug)
+    .maybeSingle();
+
+  if (error) {
+    throw error;
+  }
+
+  if (!data) {
+    return setCacheValue(`projects:detail:${slug}`, null);
+  }
+
+  const row = data as PublicProjectRow;
+
+  return setCacheValue(
+    `projects:detail:${slug}`,
+    toProjectApiDetail(row, withProjectImage(client, row)),
+  );
+}
 
 app.use(express.json());
 
@@ -18,6 +187,40 @@ app.use(express.json());
 
 app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok', ts: Date.now() });
+});
+
+app.get('/api/projects', async (_req, res) => {
+  try {
+    res.json(await loadPublishedProjects());
+  } catch (error) {
+    console.error('[projects:list] error:', error);
+    res.status(503).json({ error: 'Projects API is unavailable.' });
+  }
+});
+
+app.get('/api/projects/featured', async (_req, res) => {
+  try {
+    res.json(await loadFeaturedProjects());
+  } catch (error) {
+    console.error('[projects:featured] error:', error);
+    res.status(503).json({ error: 'Featured projects API is unavailable.' });
+  }
+});
+
+app.get('/api/projects/:slug', async (req, res) => {
+  try {
+    const project = await loadProjectBySlug(req.params['slug']);
+
+    if (!project) {
+      res.status(404).json({ error: 'Project not found.' });
+      return;
+    }
+
+    res.json(project);
+  } catch (error) {
+    console.error('[projects:detail] error:', error);
+    res.status(503).json({ error: 'Project detail API is unavailable.' });
+  }
 });
 
 // ─── Contact API ────────────────────────────────────────────────────────────
