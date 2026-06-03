@@ -1,7 +1,7 @@
 export interface Project {
   _id: string;
   title: string;
-  slug: { current: string };
+  slug: string;
   description_es: string;
   description_en: string;
   stack: string[];

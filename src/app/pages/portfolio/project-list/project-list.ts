@@ -2,7 +2,7 @@ import { Component, OnInit, computed, inject, signal } from '@angular/core';
 import { ProjectCard } from '../../../shared/molecules/project-card/project-card';
 import { Chip } from '../../../shared/atoms/chip/chip';
 import { RevealDirective } from '../../../shared/directives/reveal.directive';
-import { SanityService } from '../../../core/services/sanity.service';
+import { ProjectDataService } from '../../../core/services/project-data.service';
 import { SeoService } from '../../../core/services/seo.service';
 import { ProjectSummary } from '../../../core/models/project.model';
 
@@ -72,34 +72,20 @@ import { ProjectSummary } from '../../../core/models/project.model';
         </div>
       }
 
-      <!-- CMS not configured -->
-      @if (!loading() && !sanity.isConfigured) {
-        <div class="border border-border bg-surface p-10 text-center space-y-3">
-          <p class="font-mono text-sm text-muted">CMS no configurado</p>
-          <p class="text-xs text-muted/60">
-            Agregá tu <code class="text-accent-2">SANITY_PROJECT_ID</code> en
-            <code class="text-accent-2">src/environments/environment.ts</code>
-          </p>
-        </div>
-      }
-
-      <!-- Error state -->
-      @if (!loading() && error() && sanity.isConfigured) {
-        <div class="border border-accent-1/30 bg-accent-1/5 p-8 text-center space-y-2">
-          <p class="font-mono text-sm text-accent-1">Error al cargar proyectos</p>
-          <p class="text-xs text-muted">{{ error() }}</p>
-          <button
-            type="button"
-            (click)="load()"
-            class="font-mono text-xs text-accent-1 border border-accent-1/30 px-3 py-1.5 hover:bg-accent-1/10 transition-colors mt-3"
-          >Reintentar</button>
-        </div>
-      }
-
       <!-- Empty filtered state -->
-      @if (!loading() && !error() && filteredProjects().length === 0 && allProjects().length > 0) {
+      @if (!loading() && filteredProjects().length === 0 && allProjects().length > 0) {
         <div class="py-16 text-center">
           <p class="font-mono text-sm text-muted">Sin proyectos para este filtro.</p>
+        </div>
+      }
+
+      <!-- Empty state -->
+      @if (!loading() && allProjects().length === 0) {
+        <div class="border border-border bg-surface p-10 text-center space-y-3">
+          <p class="font-mono text-sm text-muted">Todavia no hay proyectos publicados.</p>
+          <p class="text-xs text-muted/60">
+            El portfolio ya usa una fuente local propia y esta listo para sumar nuevos casos.
+          </p>
         </div>
       }
 
@@ -116,11 +102,10 @@ import { ProjectSummary } from '../../../core/models/project.model';
   `,
 })
 export class ProjectList implements OnInit {
-  readonly sanity = inject(SanityService);
+  private readonly projectData = inject(ProjectDataService);
   private readonly seo = inject(SeoService);
 
   readonly loading = signal(true);
-  readonly error = signal<string | null>(null);
   readonly allProjects = signal<ProjectSummary[]>([]);
   readonly activeFilter = signal<string>('all');
 
@@ -151,17 +136,10 @@ export class ProjectList implements OnInit {
 
   load(): void {
     this.loading.set(true);
-    this.error.set(null);
 
-    this.sanity.getProjects().subscribe({
-      next: (projects) => {
-        this.allProjects.set(projects);
-        this.loading.set(false);
-      },
-      error: (err: Error) => {
-        this.error.set(err.message ?? 'Unknown error');
-        this.loading.set(false);
-      },
+    this.projectData.getProjects().subscribe((projects) => {
+      this.allProjects.set(projects);
+      this.loading.set(false);
     });
   }
 

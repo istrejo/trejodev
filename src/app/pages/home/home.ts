@@ -1,5 +1,7 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, LOCALE_ID, OnInit, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { ProjectSummary } from '../../core/models/project.model';
+import { ProjectDataService } from '../../core/services/project-data.service';
 import { SeoService } from '../../core/services/seo.service';
 import { Button } from '../../shared/atoms/button/button';
 import { Tag } from '../../shared/atoms/tag/tag';
@@ -10,21 +12,6 @@ const STACK_TAGS = [
   'Angular', 'TypeScript', 'RxJS', 'Nx', 'Storybook',
   'Microfrontends', 'Module Federation', 'Docker', 'CI/CD',
   'Hexagonal Architecture', 'SOLID', 'Tailwind',
-];
-
-const FEATURED_PROJECTS = [
-  {
-    title: 'eCommerce Microfrontend',
-    description: 'Arquitectura de microfrontends con Module Federation, Nx y Angular — shell + 4 remotes independientes.',
-    tags: ['Angular', 'Nx', 'Module Federation'],
-    slug: 'ecommerce-mfe',
-  },
-  {
-    title: 'Legalo App',
-    description: 'Plataforma legal SaaS — arquitectura hexagonal, signals-based state, SSR.',
-    tags: ['Angular', 'SSR', 'TypeScript'],
-    slug: 'legalo-app',
-  },
 ];
 
 @Component({
@@ -199,15 +186,15 @@ const FEATURED_PROJECTS = [
       </div>
 
       <div class="grid md:grid-cols-2 gap-6">
-        @for (project of projects; track project.slug) {
+        @for (project of projects(); track project.slug) {
           <a
             [routerLink]="['/projects', project.slug]"
             class="block border border-border bg-surface p-6 project-card-hover"
           >
             <h3 class="font-mono font-medium text-text mb-2">{{ project.title }}</h3>
-            <p class="text-sm text-muted leading-relaxed mb-4">{{ project.description }}</p>
+            <p class="text-sm text-muted leading-relaxed mb-4">{{ projectDescription(project) }}</p>
             <div class="flex flex-wrap gap-2">
-              @for (tag of project.tags; track tag) {
+              @for (tag of project.stack.slice(0, 3); track tag) {
                 <app-tag>{{ tag }}</app-tag>
               }
             </div>
@@ -246,9 +233,12 @@ const FEATURED_PROJECTS = [
   `,
 })
 export class Home implements OnInit {
+  private readonly projectData = inject(ProjectDataService);
   private readonly seo = inject(SeoService);
+  private readonly localeId = inject(LOCALE_ID);
+
   readonly stackTags = STACK_TAGS;
-  readonly projects = FEATURED_PROJECTS;
+  readonly projects = signal<ProjectSummary[]>([]);
 
   readonly philosophy = [
     { label: 'Arquitectura > Framework', desc: 'El framework es un detalle de implementación.' },
@@ -262,5 +252,13 @@ export class Home implements OnInit {
       description: 'Senior Frontend Developer especializado en Angular, microfrontend architecture y criterio arquitectónico pragmático. Fundador de Digitalmente Studio.',
       url: '/',
     });
+
+    this.projectData.getFeaturedProjects().subscribe((projects) => {
+      this.projects.set(projects);
+    });
+  }
+
+  projectDescription(project: ProjectSummary): string {
+    return this.localeId.startsWith('en') ? project.description_en : project.description_es;
   }
 }

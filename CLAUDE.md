@@ -12,7 +12,7 @@ Portfolio personal de Alejandro Trejo. Angular 21 con SSR, Tailwind 4, i18n (es/
 | Language | TypeScript 5.9.x |
 | Styling | TailwindCSS 4.x + SCSS (component styles) |
 | SSR | @angular/ssr + Express 5 |
-| CMS | Sanity (via `SANITY_CONFIG` InjectionToken) |
+| Project source | Static TypeScript data (`projects.data.ts`) |
 | i18n | @angular/localize — locales: `es` (default), `en` |
 | Email | Resend |
 | Testing | Vitest 4.x |
@@ -84,9 +84,8 @@ All routes use `loadComponent` for lazy loading. Never eager imports in `app.rou
 | Class name | No `Component` suffix | `export class Button` |
 | File name | Matches class, kebab-case | `button.ts` |
 | Selector | `app-` prefix | `app-button` |
-| Services | `Injectable`, no suffix | `SeoService`, `SanityService` |
+| Services | `Injectable`, no suffix | `SeoService`, `ProjectDataService` |
 | Models | Interface + `.model.ts` | `project.model.ts` |
-| Tokens | `InjectionToken`, uppercase | `SANITY_CONFIG` |
 
 ---
 
@@ -208,4 +207,4 @@ Test runner: Vitest 4. Config: `tsconfig.spec.json`.
 - `window` / `document` access without platform check: no.
 - `any` type: no.
 - Class names with `Component` suffix (e.g., `ButtonComponent`): no.
-- Committing secrets or real Sanity tokens: no. Use `environment.ts` (gitignored in prod).
+- Committing secrets or real API tokens: no. Keep production secrets outside the repo.

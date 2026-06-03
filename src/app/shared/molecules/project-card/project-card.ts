@@ -20,7 +20,7 @@ import { ProjectSummary } from '../../../core/models/project.model';
   `],
   template: `
     <a
-      [routerLink]="['/projects', project().slug.current]"
+      [routerLink]="['/projects', project().slug]"
       class="card flex flex-col h-full border border-border bg-surface p-6 group"
     >
       <!-- Image or placeholder -->
