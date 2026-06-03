@@ -12,14 +12,14 @@ import {
   inject,
   signal,
 } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import { Icon } from '../../shared/atoms/icon/icon';
+import { BrandLogo } from '../../shared/atoms/brand-logo/brand-logo';
 import { Nav } from '../nav/nav';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterLink, Nav, Icon],
+  imports: [Nav, Icon, BrandLogo],
   animations: [
     trigger('mobileMenu', [
       transition(':enter', [
@@ -36,14 +36,7 @@ import { Nav } from '../nav/nav';
       <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
 
         <!-- Logo -->
-        <a routerLink="/" class="flex items-center opacity-80 hover:opacity-100 transition-opacity duration-150">
-          <img
-            src="/logo.png"
-            alt="Alejandro Trejo"
-            class="h-9 w-auto"
-            style="filter: brightness(0) invert(1)"
-          >
-        </a>
+        <app-brand-logo />
 
         <!-- Desktop nav -->
         <div class="hidden md:block">
