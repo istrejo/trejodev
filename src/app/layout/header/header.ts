@@ -31,60 +31,7 @@ import { Nav } from '../nav/nav';
       ]),
     ]),
   ],
-  template: `
-    <header class="fixed top-0 left-0 right-0 z-50 border-b border-border bg-bg/80 backdrop-blur-sm">
-      <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-
-        <!-- Logo -->
-        <app-brand-logo />
-
-        <!-- Desktop nav -->
-        <div class="hidden md:block">
-          <app-nav orientation="horizontal" />
-        </div>
-
-        <!-- Right side: locale toggle + mobile trigger -->
-        <div class="flex items-center gap-4">
-          <button
-            type="button"
-            (click)="toggleLocale()"
-            class="font-mono text-xs text-muted hover:text-text border border-border hover:border-accent-1/40 px-2 py-1 transition-all duration-150"
-            [attr.aria-label]="'Cambiar idioma a ' + (isEs() ? 'English' : 'Español')"
-          >
-            {{ isEs() ? 'EN' : 'ES' }}
-          </button>
-
-          <!-- Hamburger (mobile only) -->
-          <button
-            type="button"
-            class="md:hidden text-muted hover:text-text transition-colors duration-150"
-            (click)="menuOpen.set(!menuOpen())"
-            [attr.aria-expanded]="menuOpen()"
-            aria-label="Toggle navigation"
-          >
-            @if (menuOpen()) {
-              <app-icon name="close" size="md" />
-            } @else {
-              <app-icon name="menu" size="md" />
-            }
-          </button>
-        </div>
-      </div>
-
-      <!-- Mobile menu -->
-      @if (menuOpen()) {
-        <div
-          @mobileMenu
-          class="md:hidden border-t border-border bg-surface px-6 py-4"
-        >
-          <app-nav orientation="vertical" (navClick)="menuOpen.set(false)" />
-        </div>
-      }
-    </header>
-
-    <!-- Spacer for fixed header -->
-    <div class="h-16"></div>
-  `,
+  templateUrl: './header.html',
 })
 export class Header implements OnDestroy {
   private readonly localeId = inject(LOCALE_ID);
