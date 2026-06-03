@@ -1,3 +1,4 @@
+// ── Hero entrance animations ──────────────────────────────────
 .hero-eyebrow  { animation: heroSlideUp 500ms ease-out  80ms both; }
 .hero-title    { animation: heroSlideUp 600ms ease-out 180ms both; }
 .hero-divider  { animation: heroSlideUp 400ms ease-out 300ms both; }
@@ -16,23 +17,107 @@
   to   { opacity: 1; transform: translateY(0)   scale(1); }
 }
 
+// ── Code window ───────────────────────────────────────────────
+// Grid-based line numbers via CSS counter.
+// Each .code-line renders as a 2-column grid row:
+//   col 1 → auto-incremented line number (::before)
+//   col 2 → code content (wrapping <span>)
+
 .code-block {
   font-family: var(--font-code);
   font-size: 0.78rem;
-  line-height: 1.7;
+  line-height: 1.75;
   color: var(--color-muted);
+  counter-reset: code-line;
+  white-space: pre;           // preserves indentation inside .code-line > span
 }
 
-.code-key   { color: #BB9AF7; }
-.code-str   { color: #9ECE6A; }
-.code-arr   { color: var(--color-accent-2); }
-.code-cmnt  { color: #4a4a6a; font-style: italic; }
+.code-line {
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  gap: 0 0.75rem;
+  counter-increment: code-line;
 
+  // Line number column
+  &::before {
+    content: counter(code-line);
+    color: #2a2a2a;
+    user-select: none;
+    text-align: right;
+    font-size: 0.68rem;
+    padding-top: 0.12em;
+    opacity: 1;
+  }
+}
+
+// Syntax token colours — aligned to design system
+// Keywords: red-leaning (brand accent family)
+.code-key  { color: #ff5470; }
+// Functions / types / class names: accent-2 (blue = technical)
+.code-fn   { color: var(--color-accent-2); }
+// String literals: muted green (conventional, high readability)
+.code-str  { color: #9ece6a; }
+// Comments: recessed dark, italic
+.code-cmnt { color: #3a3a58; font-style: italic; }
+// Array / bracket colour kept for backward compat
+.code-arr  { color: var(--color-accent-2); }
+
+// ── Project card hover — red left accent line ─────────────────
+// Requires `relative overflow-hidden` on the card element (already
+// added in the template).
 .project-card-hover {
-  transition: border-color 200ms, transform 200ms;
+  transition: border-color 200ms ease, transform 200ms ease;
+
+  // Vertical red accent line: scaleY 0→1 from top on hover
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--color-accent-1);
+    transform: scaleY(0);
+    transform-origin: top center;
+    transition: transform 220ms ease;
+  }
 
   &:hover {
-    border-color: color-mix(in srgb, var(--color-accent-1) 40%, transparent);
+    border-color: color-mix(in srgb, var(--color-accent-1) 35%, transparent);
     transform: translateY(-2px);
+
+    &::before {
+      transform: scaleY(1);
+    }
   }
+}
+
+
+.hero-bleed {
+  position: absolute;
+  top: -220px;
+  left: -180px;
+  width: 700px;
+  height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(221, 0, 49, 0.13) 0%,
+    transparent 65%
+  );
+  filter: blur(48px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+// Asegura que el contenido del hero quede ENCIMA del bleed
+.hero-eyebrow,
+.hero-title,
+.hero-divider,
+.hero-tagline,
+.hero-sub,
+.hero-ctas,
+.hero-visual {
+  position: relative;
+  z-index: 1;
 }

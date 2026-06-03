@@ -1,31 +1,38 @@
 <!-- ═══ HERO ═══════════════════════════════════════════════════ -->
-<section class="min-h-[calc(100vh-4rem)] flex items-center">
+<section class="min-h-[calc(100vh-4rem)] flex items-center relative overflow-hidden">
+  <div class="hero-bleed" aria-hidden="true"></div>
+  <!-- resto del contenido sin cambios -->
   <div class="max-w-6xl mx-auto px-6 w-full py-16">
     <div class="grid md:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-20 items-center">
-
       <!-- Left: text content -->
       <div class="space-y-6">
         <div class="hero-eyebrow">
-          <span class="inline-flex items-center gap-2 font-mono text-xs text-accent-1 border border-accent-1/30 bg-accent-1/5 px-3 py-1.5">
-            <span class="w-1.5 h-1.5 rounded-full bg-accent-1 animate-pulse"></span>
+          <span
+            class="inline-flex items-center gap-2.5 font-mono text-xs text-accent-1 border border-accent-1/30 bg-accent-1/5 px-3 py-1.5 whitespace-nowrap"
+          >
+            <span class="w-1.5 h-1.5 rounded-full bg-accent-1 animate-pulse shrink-0"></span>
             Senior Frontend Developer · Angular Specialist
           </span>
         </div>
 
-        <h1 class="hero-title font-mono font-bold text-text leading-[1.1] tracking-tight">
-          <span class="block text-4xl sm:text-5xl lg:text-6xl">Alejandro</span>
-          <span class="block text-4xl sm:text-5xl lg:text-6xl text-accent-1">Trejo</span>
+        <h1 class="hero-title font-mono font-bold text-text leading-[1.05] tracking-tight">
+          <span class="block text-5xl lg:text-[3.75rem]">Alejandro</span>
+          <span class="block text-5xl lg:text-[3.75rem] text-accent-1">Trejo</span>
         </h1>
 
-        <div class="hero-divider w-12 h-px bg-accent-1"></div>
+        <!-- Thicker, wider divider — was w-12 h-px -->
+        <div class="hero-divider w-16 h-[3px] bg-accent-1"></div>
 
-        <p class="hero-tagline text-lg sm:text-xl text-text font-medium leading-snug max-w-md">
-          No vendo frameworks.<br>
+        <p
+          class="hero-tagline text-xl sm:text-[1.35rem] text-text font-medium leading-snug max-w-md"
+        >
+          No vendo frameworks.<br />
           <span class="text-muted">Vendo decisiones técnicas correctas.</span>
         </p>
 
-        <p class="hero-sub font-mono text-xs text-muted tracking-wide">
-          Angular&nbsp;&nbsp;·&nbsp;&nbsp;Microfrontend Architecture&nbsp;&nbsp;·&nbsp;&nbsp;Criterio Pragmático
+        <p class="hero-sub font-mono text-xs text-muted tracking-widest uppercase">
+          Angular&nbsp;&nbsp;·&nbsp;&nbsp;Microfrontend
+          Architecture&nbsp;&nbsp;·&nbsp;&nbsp;Criterio Pragmático
         </p>
 
         <div class="hero-ctas flex flex-wrap gap-3">
@@ -38,57 +45,90 @@
         </div>
       </div>
 
-      <!-- Right: code visual (breaks slightly out of line) -->
+      <!-- Right: upgraded code window — class-based TS + line numbers -->
       <div class="hero-visual hidden md:block md:translate-y-[-1rem]">
-        <div class="border border-border bg-surface rounded-sm overflow-hidden shadow-2xl">
-          <!-- fake window bar -->
-          <div class="flex items-center gap-1.5 px-4 py-3 border-b border-border bg-bg">
-            <span class="w-2.5 h-2.5 rounded-full bg-border"></span>
-            <span class="w-2.5 h-2.5 rounded-full bg-border"></span>
-            <span class="w-2.5 h-2.5 rounded-full bg-border"></span>
-            <span class="ml-3 font-mono text-xs text-muted">approach.ts</span>
+        <div class="border border-border bg-surface rounded-sm overflow-hidden">
+          <!-- Terminal bar: first dot = Angular red -->
+          <div class="flex items-center px-4 py-3 border-b border-border bg-bg">
+            <div class="flex items-center gap-1.5">
+              <span class="w-2.5 h-2.5 rounded-full bg-accent-1"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-border"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-border"></span>
+            </div>
+            <span class="flex-1 text-center font-mono text-xs text-muted">approach.ts</span>
           </div>
-          <!-- code content -->
-          <pre class="code-block p-5 m-0 overflow-hidden"><code><span class="code-cmnt">// No magic. No shortcuts.</span>
-<span class="code-key">const</span> approach = &#123;
-  <span class="code-key">priority</span>: <span class="code-str">'decisions'</span>,
-  <span class="code-key">over</span>:     <span class="code-str">'frameworks'</span>,
-
-  <span class="code-key">architecture</span>: <span class="code-arr">[</span>
-    <span class="code-str">'hexagonal'</span>,
-    <span class="code-str">'screaming'</span>,
-    <span class="code-str">'clean'</span>,
-  <span class="code-arr">]</span>,
-
-  <span class="code-key">stack</span>: <span class="code-arr">[</span>
-    <span class="code-str">'Angular'</span>, <span class="code-str">'Nx'</span>,
-    <span class="code-str">'TypeScript'</span>, <span class="code-str">'RxJS'</span>,
-    <span class="code-str">'Microfrontends'</span>,
-  <span class="code-arr">]</span>,
-
-  <span class="code-key">philosophy</span>: <span class="code-str">'context&nbsp;wins'</span>,
-&#125;
-
-<span class="code-cmnt">// Digitalmente Studio</span></code></pre>
+          <!-- Code body: grid-based line numbers via CSS counter -->
+          <div class="code-block p-5 overflow-hidden">
+            <div class="code-line">
+              <span
+                ><span class="code-key">import</span> &#123;
+                <span class="code-fn">Component</span> &#125; <span class="code-key">from</span>
+                <span class="code-str">'&#64;angular/core'</span>;</span
+              >
+            </div>
+            <div class="code-line"><span>&nbsp;</span></div>
+            <div class="code-line"><span class="code-cmnt">/**</span></div>
+            <div class="code-line">
+              <span class="code-cmnt"> * Core philosophy: Pragmatism over hype.</span>
+            </div>
+            <div class="code-line"><span class="code-cmnt"> */</span></div>
+            <div class="code-line">
+              <span
+                ><span class="code-key">export class</span>
+                <span class="code-fn">Architect</span> &#123;</span
+              >
+            </div>
+            <div class="code-line"><span>&nbsp;</span></div>
+            <div class="code-line">
+              <span>
+                <span class="code-key">private readonly</span> principle =
+                <span class="code-str">'Solve the problem'</span>;</span
+              >
+            </div>
+            <div class="code-line"><span>&nbsp;</span></div>
+            <div class="code-line">
+              <span>
+                <span class="code-fn">analyzeReqs</span>(ctx: <span class="code-fn">Context</span>):
+                <span class="code-fn">Solution</span> &#123;</span
+              >
+            </div>
+            <div class="code-line">
+              <span> <span class="code-key">if</span> (ctx.isComplex) &#123;</span>
+            </div>
+            <div class="code-line">
+              <span>
+                <span class="code-key">return this</span>.<span class="code-fn"
+                  >designMicrofrontends</span
+                >();</span
+              >
+            </div>
+            <div class="code-line"><span> &#125;</span></div>
+            <div class="code-line">
+              <span>
+                <span class="code-key">return this</span>.<span class="code-fn">buildMonolith</span
+                >();</span
+              >
+            </div>
+            <div class="code-line"><span> &#125;</span></div>
+            <div class="code-line"><span>&#125;</span></div>
+          </div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
 <!-- ═══ ABOUT TEASER ═══════════════════════════════════════════ -->
-<section class="max-w-6xl mx-auto px-6 py-20" appReveal>
+<section class="max-w-6xl mx-auto px-6 py-24" appReveal>
   <div class="grid md:grid-cols-2 gap-12 items-center">
     <div class="space-y-4">
       <span class="font-mono text-xs text-accent-1 tracking-widest uppercase">Sobre mí</span>
-      <h2 class="font-mono font-bold text-2xl text-text leading-tight">
-        El framework no es<br>la solución.
+      <h2 class="font-mono font-bold text-3xl text-text leading-tight">
+        El framework no es<br />la solución.
       </h2>
       <p class="text-muted leading-relaxed max-w-sm">
-        15+ años tomando decisiones técnicas basadas en el contexto real del negocio,
-        no en tendencias. La arquitectura correcta depende de cada problema — no existe
-        una talla única.
+        15+ años tomando decisiones técnicas basadas en el contexto real del negocio, no en
+        tendencias. La arquitectura correcta depende de cada problema — no existe una talla única.
       </p>
       <a
         routerLink="/about"
@@ -98,22 +138,30 @@
         <app-icon name="arrow-right" size="sm" />
       </a>
     </div>
-    <div class="border border-border bg-surface p-8 space-y-3">
-      @for (item of philosophy; track item.label) {
-        <div class="flex items-start gap-3">
-          <span class="font-mono text-accent-1 text-xs mt-1 shrink-0">→</span>
-          <div>
-            <span class="font-mono text-sm text-text">{{ item.label }}</span>
-            <p class="text-xs text-muted mt-0.5">{{ item.desc }}</p>
+
+    <!-- Philosophy list: divide-y replaces space-y-3 -->
+    <div class="border border-border bg-surface p-8">
+      <div class="divide-y divide-border">
+        @for (item of philosophy; track item.label) {
+          <div class="flex items-start gap-4 py-5 first:pt-0 last:pb-0">
+            <span class="font-mono text-accent-1 text-xs mt-0.5 shrink-0">→</span>
+            <div>
+              <span class="font-mono text-sm text-text block">{{ item.label }}</span>
+              <p class="text-xs text-muted mt-1 leading-relaxed">{{ item.desc }}</p>
+            </div>
           </div>
-        </div>
-      }
+        }
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ═══ PROJECTS TEASER ═════════════════════════════════════════ -->
-<section class="max-w-6xl mx-auto px-6 py-20 border-t border-border" appReveal [appRevealDelay]="100">
+<section
+  class="max-w-6xl mx-auto px-6 py-24 border-t border-border"
+  appReveal
+  [appRevealDelay]="100"
+>
   <div class="flex items-end justify-between mb-10">
     <div>
       <span class="font-mono text-xs text-accent-1 tracking-widest uppercase">Proyectos</span>
@@ -148,9 +196,10 @@
   } @else {
     <div class="grid md:grid-cols-2 gap-6">
       @for (project of projects(); track project.slug) {
+        <!-- relative + overflow-hidden needed for ::before accent line -->
         <a
           [routerLink]="['/projects', project.slug]"
-          class="block border border-border bg-surface p-6 project-card-hover"
+          class="block relative overflow-hidden border border-border bg-surface p-6 project-card-hover"
         >
           <h3 class="font-mono font-medium text-text mb-2">{{ project.title }}</h3>
           <p class="text-sm text-muted leading-relaxed mb-4">{{ projectDescription(project) }}</p>
@@ -171,8 +220,12 @@
   </div>
 </section>
 
-<!-- ═══ STACK TEASER ════════════════════════════════════════════ -->
-<section class="max-w-6xl mx-auto px-6 py-20 border-t border-border" appReveal [appRevealDelay]="150">
+<!-- ═══ STACK TEASER — grouped 2-col layout ════════════════════ -->
+<section
+  class="max-w-6xl mx-auto px-6 py-24 border-t border-border"
+  appReveal
+  [appRevealDelay]="150"
+>
   <div class="flex items-end justify-between mb-10">
     <div>
       <span class="font-mono text-xs text-accent-1 tracking-widest uppercase">Stack</span>
@@ -186,9 +239,24 @@
     </a>
   </div>
 
-  <div class="flex flex-wrap gap-2.5">
-    @for (tag of stackTags; track tag) {
-      <app-tag>{{ tag }}</app-tag>
-    }
+  <div class="grid md:grid-cols-2 gap-10">
+    <div>
+      <p class="font-mono text-xs text-muted tracking-widest uppercase mb-5">Ecosistema Core</p>
+      <div class="flex flex-wrap gap-2.5">
+        @for (tag of stackTags.slice(0, 6); track tag) {
+          <app-tag>{{ tag }}</app-tag>
+        }
+      </div>
+    </div>
+    <div>
+      <p class="font-mono text-xs text-muted tracking-widest uppercase mb-5">
+        Arquitectura &amp; Patrones
+      </p>
+      <div class="flex flex-wrap gap-2.5">
+        @for (tag of stackTags.slice(6); track tag) {
+          <app-tag>{{ tag }}</app-tag>
+        }
+      </div>
+    </div>
   </div>
 </section>
