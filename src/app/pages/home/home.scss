@@ -94,8 +94,8 @@
 
 
 .hero-bleed {
-  position: absolute;
-  top: -220px;
+   position: fixed;      /* ← era absolute */
+  top: -200px;     /* ← era -220px, sube más para pasar detrás del header */
   left: -180px;
   width: 700px;
   height: 700px;
