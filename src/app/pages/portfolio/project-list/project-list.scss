@@ -1,0 +1,19 @@
+.page-title {
+  animation: listSlideUp 500ms ease-out 80ms both;
+}
+
+.page-filters {
+  animation: listSlideUp 500ms ease-out 200ms both;
+}
+
+@keyframes listSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

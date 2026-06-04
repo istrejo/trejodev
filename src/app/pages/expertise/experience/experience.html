@@ -1,0 +1,77 @@
+<!-- ═══ HEADER ══════════════════════════════════════════════════ -->
+<section class="border-b border-border">
+  <div class="max-w-6xl mx-auto px-6 py-16 space-y-4">
+    <span class="font-mono text-xs text-accent-1 tracking-widest uppercase"
+      i18n="@@experience.eyebrow">Experiencia</span>
+    <h1 class="page-title font-mono font-bold text-3xl sm:text-4xl text-text"
+      i18n="@@experience.title">Trayectoria profesional.</h1>
+    <p class="page-lead text-muted max-w-xl leading-relaxed"
+      i18n="@@experience.lead">
+      4+ años construyendo sistemas frontend distribuidos con Angular y microfrontends.
+      Cada rol fue una decisión consciente hacia mayor impacto técnico.
+    </p>
+  </div>
+</section>
+
+<!-- ═══ LAYOUT ═══════════════════════════════════════════════════ -->
+<div class="max-w-6xl mx-auto px-6 py-12">
+  <div class="grid md:grid-cols-[1fr_320px] gap-12 lg:gap-16 items-start">
+
+    <!-- Timeline -->
+    <div appReveal>
+      <h2 class="font-mono text-xs text-muted tracking-widest uppercase mb-8 border-b border-border pb-3"
+        i18n="@@experience.jobs.title">Experiencia laboral</h2>
+
+      @for (job of jobs; track job.company + job.period; let last = $last) {
+        <app-timeline-item
+          [job]="job"
+          [last]="last"
+          [locale]="localeId"
+        />
+      }
+    </div>
+
+    <!-- Sidebar: education + metrics -->
+    <div class="space-y-8" appReveal [appRevealDelay]="120">
+
+      <!-- Key metrics -->
+      <div class="border border-border bg-surface p-6 space-y-4">
+        <h3 class="font-mono text-xs text-muted tracking-widest uppercase"
+          i18n="@@experience.metrics.title">En números</h3>
+        @for (m of metrics; track m.label) {
+          <div class="flex items-baseline justify-between gap-4">
+            <span class="text-xs text-muted leading-snug">{{ m.label }}</span>
+            <span class="font-mono font-bold text-accent-1 shrink-0">{{ m.value }}</span>
+          </div>
+        }
+      </div>
+
+      <!-- Education -->
+      <div class="space-y-4">
+        <h3 class="font-mono text-xs text-muted tracking-widest uppercase border-b border-border pb-3"
+          i18n="@@experience.education.title">Formación</h3>
+        @for (edu of education; track edu.institution) {
+          <div class="space-y-1 pb-4 border-b border-border last:border-0 last:pb-0">
+            <p class="font-mono text-sm font-medium text-text">{{ edu.degree }}</p>
+            <p class="font-mono text-xs text-accent-1">{{ edu.institution }}</p>
+            <p class="font-mono text-xs text-muted">{{ edu.period }}</p>
+            <p class="text-xs text-muted/80 leading-relaxed mt-1">
+              {{ localeId.startsWith('en') ? edu.description_en : edu.description_es }}
+            </p>
+          </div>
+        }
+      </div>
+
+      <!-- Remote work note -->
+      <div class="border border-accent-2/20 bg-accent-2/5 p-4 space-y-1">
+        <p class="font-mono text-xs text-accent-2" i18n="@@experience.remote.label">
+          100% Remote
+        </p>
+        <p class="text-xs text-muted" i18n="@@experience.remote.desc">
+          Trabajo remoto con equipos distribuidos globalmente desde 2020.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</div>

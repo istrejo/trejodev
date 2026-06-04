@@ -1,0 +1,46 @@
+<!-- ═══ HEADER ══════════════════════════════════════════════════ -->
+<section class="border-b border-border">
+  <div class="max-w-6xl mx-auto px-6 py-16 space-y-5">
+    <span class="font-mono text-xs text-accent-1 tracking-widest uppercase"
+      i18n="@@stack.eyebrow">Stack</span>
+    <h1 class="page-title font-mono font-bold text-3xl sm:text-4xl text-text"
+      i18n="@@stack.title">Herramientas con criterio.</h1>
+    <p class="page-lead text-muted max-w-xl leading-relaxed"
+      i18n="@@stack.lead">
+      No colecciono frameworks. Profundizo en los que eleijo con criterio
+      y entiendo sus trade-offs en contextos reales.
+    </p>
+
+    <!-- Legend -->
+    <div class="flex flex-wrap gap-3 pt-2">
+      @for (entry of legend; track entry.level) {
+        <span class="inline-flex items-center px-2.5 py-1 text-xs font-mono border rounded-sm"
+          [class]="entry.style">
+          {{ entry.label }}
+        </span>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SKILL GROUPS ═════════════════════════════════════════════ -->
+<div class="max-w-6xl mx-auto px-6 py-12 space-y-12">
+  @for (group of skillGroups; track group.category; let i = $index) {
+    <div appReveal [appRevealDelay]="i * 60">
+      <h2 class="font-mono text-xs text-muted tracking-widest uppercase mb-4 border-b border-border pb-3">
+        {{ group.category }}
+      </h2>
+      <div class="flex flex-wrap gap-2">
+        @for (skill of group.skills; track skill.name) {
+          <span
+            class="inline-flex items-center gap-2 px-3 py-1.5 text-sm font-mono border transition-colors duration-150"
+            [class]="skillClass(skill.level)"
+          >
+            {{ skill.name }}
+            <span class="text-[10px] opacity-60">{{ levelLabel(skill.level) }}</span>
+          </span>
+        }
+      </div>
+    </div>
+  }
+</div>

@@ -1,0 +1,13 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
+.card {
+  transition: border-color 200ms, transform 200ms;
+}
+
+.card:hover {
+  border-color: color-mix(in srgb, var(--color-accent-1) 40%, transparent);
+  transform: translateY(-3px);
+}

@@ -1,0 +1,28 @@
+.page-title {
+  animation: ctSlideUp 500ms ease-out 80ms both;
+}
+
+.page-form {
+  animation: ctSlideUp 500ms ease-out 200ms both;
+}
+
+@keyframes ctSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hp-field {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+  opacity: 0;
+  pointer-events: none;
+  tab-index: -1;
+}

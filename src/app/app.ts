@@ -7,17 +7,7 @@ import { Header } from './layout/header/header';
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, Header, Footer],
-  template: `
-    <app-header />
-    <main>
-      <router-outlet />
-    </main>
-    <app-footer />
-  `,
-  styles: [`
-    main {
-      min-height: calc(100vh - 4rem);
-    }
-  `],
+  templateUrl: './app.html',
+  styleUrl: './app.scss',
 })
 export class App {}
